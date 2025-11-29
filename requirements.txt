@@ -1,0 +1,19 @@
+# Core LLM/retrieval/web dependencies (from gen_report_system)
+sentence-transformers==5.1.2
+requests>=2.31.0
+python-dotenv>=1.0.1
+fastapi>=0.111.0
+uvicorn>=0.30.1
+jinja2>=3.1.3
+
+# Chemistry / structure handling
+rdkit
+numpy
+scipy
+
+# Optional: web/serialization helpers used transitively
+typing_extensions>=4.8.0
+PyYAML>=6.0.1
+
+# MCP server (for Codex/Gemini integration)
+mcp==1.22.0
