@@ -6,7 +6,6 @@ from .query_parser import ParsedQuery, ParsedQuerySystem, QueryParser
 from .model_registry import MODEL_CATALOG, available_models, build_client_from_key
 from .workflow import (
     convert_systems,
-    describe_flow,
     load_generation_materials,
     run_parse_and_retrieve,
     generate_report_from_context,
@@ -25,7 +24,6 @@ __all__ = [
     "available_models",
     "build_client_from_key",
     "convert_systems",
-    "describe_flow",
     "load_generation_materials",
     "run_parse_and_retrieve",
     "generate_report_from_context",

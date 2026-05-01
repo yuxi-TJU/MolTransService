@@ -1,9 +1,9 @@
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import Enum
-from typing import Optional
+from typing import Any, Dict, Optional
 
 import requests
 
@@ -21,7 +21,8 @@ class LLMClient:
     api_key: str
     model: str
     api_url: Optional[str] = None
-    timeout: int = 300
+    timeout: int = 3000
+    extra_body: Optional[Dict[str, Any]] = None  # For model-specific parameters like enable_thinking
 
     def complete(self, prompt: str, *, system_prompt: Optional[str] = None, temperature: float = 0.0) -> str:
         if self.provider == LLMProvider.OPENAI:
@@ -51,7 +52,23 @@ class LLMClient:
             "messages": messages,
             "temperature": temperature,
         }
+        # Add extra_body parameters directly to payload (for models like qwen3-max-thinking)
+        if self.extra_body:
+            payload.update(self.extra_body)
+        
+        # Debug: print payload for troubleshooting
+        import os
+        if os.getenv("DEBUG_LLM"):
+            print(f"DEBUG payload: {json.dumps(payload, indent=2)}")
+        
         response = requests.post(url, headers=headers, json=payload, timeout=self.timeout)
+        
+        # Debug: print response for troubleshooting
+        if os.getenv("DEBUG_LLM") and not response.ok:
+            print(f"DEBUG response status: {response.status_code}")
+            print(f"DEBUG response body: {response.text}")
+        
+        response.raise_for_status()
         response.raise_for_status()
         data = response.json()
         try:

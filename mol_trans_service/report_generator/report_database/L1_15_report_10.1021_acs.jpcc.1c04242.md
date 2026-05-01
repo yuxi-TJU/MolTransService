@@ -1,70 +1,70 @@
-# 0\. Metadata
+# 0. Metadata
 
   - Title: Heteroatom Effects on Quantum Interference in Molecular Junctions: Modulating Antiresonances by Molecular Design
   - DOI: (Omit this part)
 
-# 1\. Literature Summary
+# 1. Literature Summary
 
 This is an experiment + computation study. The authors use scanning tunneling microscopy-break junction (STM-BJ) techniques and density functional theory (DFT) calculations to investigate the single-molecule conductance of four related molecules. The systems include two novel 1-phenylpyrrole derivatives (one para-linked, **1**, and one meta-linked, **2**) and their biphenyl analogues (para-linked, **3**, and meta-linked, **4**). The key finding is that the presence of the nitrogen atom in the conductance pathway significantly enhances the conductance difference between the para and meta isomers. Experimentally and computationally, the para-linked pyrrole (**1**) shows a high conductance due to "shifted destructive quantum interference" (SDQI), whereas the meta-linked pyrrole (**2**) and both biphenyls (**3, 4**) exhibit low conductance due to destructive quantum interference (DQI) near the Fermi level. This confirms the validity of "extended curly arrow rules" (ECARs) for predicting QI.
 
-# 2\. Computational Objectives
+# 2. Computational Objectives
 
-The primary computational objective is to theoretically validate the experimentally observed conductance trend ($G_1 > G_3 > G_2 > G_4$) and, more importantly, the conductance *ratio* trend ($\frac{G_1}{G_2} > \frac{G_3}{G_4}$). This is achieved by computing the zero-bias transmission spectra $T(E)$ for all four molecules. The expected result is to show that molecule **1** has a high transmission at $E_F$ (lacking a DQI dip near the Fermi level), while molecules **2**, **3**, and **4** all possess a sharp DQI anti-resonance (dip) in their $T(E)$ spectra near the Fermi level, which explains their low conductance.
+The primary computational objective is to theoretically validate the experimentally observed conductance trend ($G_1 > G_3 > G_2 > G_4$) and, more importantly, the conductance *ratio* trend ($frac{G_1}{G_2} > frac{G_3}{G_4}$). This is achieved by computing the zero-bias transmission spectra $T(E)$ for all four molecules. The expected result is to show that molecule **1** has a high transmission at $E_F$ (lacking a DQI dip near the Fermi level), while molecules **2**, **3**, and **4** all possess a sharp DQI anti-resonance (dip) in their $T(E)$ spectra near the Fermi level, which explains their low conductance.
 
-# 3\. Involved Systems
+# 3. Involved Systems
 
 ## System 1: 1
 
   - Core Molecule:
       - abbreviation: 1
-      - full\_chemical\_name: para-connected 1-phenylpyrrole derivative
-      - core\_smiles: CSc1ccc(-n2ccc(SC)c2)cc1
+      - full_chemical_name: para-connected 1-phenylpyrrole derivative
+      - core_smiles: CSc1ccc(-n2ccc(SC)c2)cc1
   - Anchors:
-      - anchor\_groups: ['Methylthio\_SMe']
+      - anchor_groups: ['Methylthio_SMe']
   - Electrodes:
-      - electrode\_material: Au
-      - electrode\_surface: N/A
+      - electrode_material: Au
+      - electrode_surface: N/A
   - Interface:
-      - interface\_geometry\_text: Thiomethyl (SMe) groups anchor the molecule to gold electrodes, likely forming S-Au bonds.
-  - Variation\_notes: "para-linked 1-phenylpyrrole. Expected to show high conductance (SDQI)."
+      - interface_geometry_text: Thiomethyl (SMe) groups anchor the molecule to gold electrodes, likely forming S-Au bonds.
+  - Variation_notes: "para-linked 1-phenylpyrrole. Expected to show high conductance (SDQI)."
 
 ## System 2: 2
 
   - Core Molecule:
       - abbreviation: 2
-      - full\_chemical\_name: meta-connected 1-phenylpyrrole derivative
-      - core\_smiles: CSc1cccc(-n2ccc(SC)c2)c1
-  - Variation\_notes: "meta-linked 1-phenylpyrrole. Expected to show low conductance (DQI)."
+      - full_chemical_name: meta-connected 1-phenylpyrrole derivative
+      - core_smiles: CSc1cccc(-n2ccc(SC)c2)c1
+  - Variation_notes: "meta-linked 1-phenylpyrrole. Expected to show low conductance (DQI)."
 
 ## System 3: 3
 
   - Core Molecule:
       - abbreviation: 3
-      - full\_chemical\_name: Biphenyl derivative (meta-para linked) 
-      - core\_smiles: CSc1ccc(-c2cccc(SC)c2)cc1
-  - Variation\_notes: "Biphenyl control. Features a meta-linkage on the first ring and a para-linkage on the second ring. Expected to show low conductance (DQI)."
+      - full_chemical_name: Biphenyl derivative (meta-para linked) 
+      - core_smiles: CSc1ccc(-c2cccc(SC)c2)cc1
+  - Variation_notes: "Biphenyl control. Features a meta-linkage on the first ring and a para-linkage on the second ring. Expected to show low conductance (DQI)."
 
 ## System 4: 4
 
   - Core Molecule:
       - abbreviation: 4
-      - full\_chemical\_name: Biphenyl derivative (meta-meta linked)
-      - core\_smiles: CSc1cccc(-c2cccc(SC)c2)c1
-  - Variation\_notes: "Biphenyl control. Features a meta-linkage on the first ring and a meta-linkage on the second ring. Expected to show low conductance (DQI)."
+      - full_chemical_name: Biphenyl derivative (meta-meta linked)
+      - core_smiles: CSc1cccc(-c2cccc(SC)c2)c1
+  - Variation_notes: "Biphenyl control. Features a meta-linkage on the first ring and a meta-linkage on the second ring. Expected to show low conductance (DQI)."
 
-# 4\. Applicability Assessment
+# 4. Applicability Assessment
 
 **Applicable.**
 
 The core computational objective is to compare the zero-bias transmission spectra $T(E)$ of several molecular isomers to understand how heteroatom substitution (a structural effect) modulates quantum interference (DQI vs. SDQI). This is a classic coherent transport problem well-suited for the QDHC framework. The paper's own theoretical analysis relies on identifying anti-resonance features, which is a qualitative lineshape analysis. MST can reproduce the key qualitative difference—the presence, absence, or shift of the DQI anti-resonance—which is sufficient to explain the mechanism.
 
-# 5\. Hierarchical Analysis
+# 5. Hierarchical Analysis
 
 **Level: L1**
 
 According to the QDHC criteria, this problem maps to the **L1 level**. The central question is how transport is "governed primarily by the molecule’s intrinsic electronic structure". The paper's entire argument rests on how the molecular structure (para vs. meta linkage) and heteroatom substitution (the N-atom) create or shift DQI antiresonances. This falls directly under the L1 "Key analytical evidence": "conductance differences between isomers (e.g., meta- vs. para-linked)" and "substituent... effects". The problem does not require specific interface geometries (L2) or finite-bias/level-alignment (L3) to explain the *existence* and *relative position* of the antiresonance, which is the core mechanism.
 
-# 6\. Input Preparation
+# 6. Input Preparation
 
 This task will use the `L1_XTB` module. The GFN-xTB method is required over EHT because it can more accurately handle the changes in charge distribution and orbital structure induced by the heteroatom (N) substitutions, which is the physical origin of the QI modulation.
 
@@ -82,7 +82,7 @@ This task will use the `L1_XTB` module. The GFN-xTB method is required over EHT 
       - `--Enum`: `1000` (A high number of points is needed to resolve the sharp DQI dips).
       - `--charge`: `0.0` (All systems are neutral).
 
-# 7\. Computational Workflow
+# 7. Computational Workflow
 
 ## Goal:
 

@@ -1,78 +1,78 @@
-# 0\. Metadata
+# 0. Metadata
 
   - Title: Understanding Role of Parallel Pathways via In Situ Switching of Quantum Interference in Molecular Tunneling Junctions
   - DOI: (Omit this part)
 
-# 1\. Literature Summary
+# 1. Literature Summary
 
 This is an experiment + computation study. The authors investigate how charge transport in molecular junctions can be modulated by switching one of two parallel intramolecular pathways. The study focuses on a series of molecules (BT, BPh, FH, and FO) where transport is influenced by quantum interference (QI). The key system, FO (Fluorenone), contains parallel linear- and cross-conjugated pathways, with the latter inducing destructive quantum interference (DQI) and low conductance. Using STM-BJ and EGaIn measurements, the authors show that protonating FO to FOH (forming a trivalent carbocation) effectively "switches off" the DQI by altering the bond topology of the cross-conjugated path. This switch results in a significant conductance increase. DFT-NEGF transport calculations support this finding, showing a characteristic DQI anti-resonance in the transmission spectrum of FO which is absent in the spectrum of FOH, leading to higher transmission at the Fermi level for FOH.
 
-# 2\. Computational Objectives
+# 2. Computational Objectives
 
 The primary computational objective is to theoretically validate the experimentally observed conductance trends ($BT > FOH > FH > BPh > FO$) by calculating the zero-bias transmission spectra $T(E)$ for all five molecules. The calculation aims to demonstrate that these conductance differences, particularly the low conductance of FO and the subsequent increase for FOH, are a direct result of modulating destructive quantum interference (DQI). The expected result is to find a DQI-induced anti-resonance (dip) in the $T(E)$ of FO, which is absent in the other molecules, and to show that this dip disappears upon protonation to FOH.
 
-# 3\. Involved Systems
+# 3. Involved Systems
 
 ## System 1: BT
 
   - Core Molecule:
       - abbreviation: BT
-      - full\_chemical\_name: Bithiophene (core)
-      - core\_smiles: Sc1ccc(C#Cc2ccc(-c3ccc(C#Cc4ccc(S)cc4)s3)s2)cc1
+      - full_chemical_name: Bithiophene (core)
+      - core_smiles: Sc1ccc(C#Cc2ccc(-c3ccc(C#Cc4ccc(S)cc4)s3)s2)cc1
   - Anchors:
-      - anchor\_groups: ['Thiol\_SH']
+      - anchor_groups: ['Thiol_SH']
   - Electrodes:
-      - electrode\_material: Au
-      - electrode\_surface: N/A
+      - electrode_material: Au
+      - electrode_surface: N/A
   - Interface:
-      - interface\_geometry\_text: Thiol anchoring groups forming covalent bonds to Au electrodes. The computational model in the paper uses a full junction with semi-infinite periodic bulk electrodes.
-  - Variation\_notes: "Linearly-conjugated reference system."
+      - interface_geometry_text: Thiol anchoring groups forming covalent bonds to Au electrodes. The computational model in the paper uses a full junction with semi-infinite periodic bulk electrodes.
+  - Variation_notes: "Linearly-conjugated reference system."
 
 ## System 2: BPh
 
   - Core Molecule:
       - abbreviation: BPh
-      - full\_chemical\_name: Biphenyl (core)
-      - core\_smiles: Sc1ccc(C#Cc2ccc(-c3ccc(C#Cc4ccc(S)cc4)cc3)cc2)cc1
-  - Variation\_notes: "Linearly-conjugated reference, subject to twisting in single-molecule junctions."
+      - full_chemical_name: Biphenyl (core)
+      - core_smiles: Sc1ccc(C#Cc2ccc(-c3ccc(C#Cc4ccc(S)cc4)cc3)cc2)cc1
+  - Variation_notes: "Linearly-conjugated reference, subject to twisting in single-molecule junctions."
 
 ## System 3: FH
 
   - Core Molecule:
       - abbreviation: FH
-      - full\_chemical\_name: Fluorene (core)
-      - core\_smiles: Sc1ccc(C#Cc2ccc3c(c2)Cc2cc(C#Cc4ccc(S)cc4)ccc2-3)cc1
-  - Variation\_notes: "Contains parallel linear- and non-conjugated pathways."
+      - full_chemical_name: Fluorene (core)
+      - core_smiles: Sc1ccc(C#Cc2ccc3c(c2)Cc2cc(C#Cc4ccc(S)cc4)ccc2-3)cc1
+  - Variation_notes: "Contains parallel linear- and non-conjugated pathways."
 
 ## System 4: FO
 
   - Core Molecule:
       - abbreviation: FO
-      - full\_chemical\_name: Fluorenone (core)
-      - core\_smiles: O=C1c2cc(C#Cc3ccc(S)cc3)ccc2-c2ccc(C#Cc3ccc(S)cc3)cc21
-  - Variation\_notes: "Contains parallel linear- and cross-conjugated pathways, expected to show DQI."
+      - full_chemical_name: Fluorenone (core)
+      - core_smiles: O=C1c2cc(C#Cc3ccc(S)cc3)ccc2-c2ccc(C#Cc3ccc(S)cc3)cc21
+  - Variation_notes: "Contains parallel linear- and cross-conjugated pathways, expected to show DQI."
 
 ## System 5: FOH
 
   - Core Molecule:
       - abbreviation: FOH
-      - full\_chemical\_name: Protonated Fluorenone (forms a trivalent carbocation)
-      - core\_smiles: [OH+]=C1c2cc(C#Cc3ccc(S)cc3)ccc2-c2ccc(C#Cc3ccc(S)cc3)cc21
-  - Variation\_notes: "Protonated (cationic) form of FO, expected to have DQI suppressed."
+      - full_chemical_name: Protonated Fluorenone (forms a trivalent carbocation)
+      - core_smiles: [OH+]=C1c2cc(C#Cc3ccc(S)cc3)ccc2-c2ccc(C#Cc3ccc(S)cc3)cc21
+  - Variation_notes: "Protonated (cationic) form of FO, expected to have DQI suppressed."
 
-# 4\. Applicability Assessment
+# 4. Applicability Assessment
 
 **Applicable.**
 
 The core computational objective is to compare the zero-bias transmission spectra $T(E)$ of several molecular isomers and one charged species (FOH) to understand how bond topology and substituents modulate destructive quantum interference (DQI). This is a classic coherent transport problem well-suited for the QDHC framework. The QDHC guide explicitly lists "Quantum Interference effects (DQI)" and "Effects of molecular... substituents" as L1-level problems. While the original paper used a full NEGF-DFT calculation (an L3-level method) to get an aligned $T(E)$ spectrum, the fundamental *mechanism* (the existence or absence of the DQI anti-resonance) is an intrinsic property of the molecule's electronic structure and can be captured by the L1 scheme.
 
-# 5\. Hierarchical Analysis
+# 5. Hierarchical Analysis
 
 **Level: L1**
 
 According to the QDHC criteria, this problem maps to the **L1 level**. The central question is how transport is governed by the molecule's *intrinsic electronic structure*, which is modified by the bond topology (e.g., cross-conjugation in FO) and substituents (protonation of FO to FOH). The conductance differences are explained by the presence or absence of a DQI anti-resonance in the $T(E)$ spectrum, which falls directly under the L1-applicable problem: "Quantum Interference effects (DQI), e.g., comparing para- vs. meta-linkages". The comparison between FO and FOH is analogous to a substituent effect, also listed under L1. The problem does not require specific interface geometries (L2) or finite-bias (L3) to explain the *existence* of the anti-resonance, which is the core mechanism.
 
-# 6\. Input Preparation
+# 6. Input Preparation
 
 This task will use the `L1_XTB` module. The GFN-xTB method is required over EHT because it can more accurately handle the complex electronic structures and, crucially, the non-neutral (charged) state of the FOH cation.
 
@@ -98,7 +98,7 @@ This task will use the `L1_XTB` module. The GFN-xTB method is required over EHT 
           - `0.0` for BT, BPh, FH, and FO.
           - `1.0` for FOH (as it is a protonated cation).
 
-# 7\. Computational Workflow
+# 7. Computational Workflow
 
 ## Goal:
 

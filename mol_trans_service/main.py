@@ -52,9 +52,10 @@ load_dotenv(GEN_REPORT_ENV)
 # Helper utilities
 # -----------------------------------------------------------------------------
 def _resolve_model(model_key: Optional[str], env_var: str, model_options: List[str]) -> str:
-    env_val = os.getenv(env_var)
+    """Resolve model with priority: model_key (call param) > env_var > first in catalog."""
     if model_key and model_key in model_options:
         return model_key
+    env_val = os.getenv(env_var)
     if env_val and env_val in model_options:
         return env_val
     return model_options[0]
@@ -277,12 +278,18 @@ def build_structures(
             - tilt_axis (str, optional): "x" or "y", default "x"
             - tilt_direction (str, optional): "clockwise"/"cw" or "counterclockwise"/"ccw", default "counterclockwise"
             - tilt_bond_R (float, optional): right Au-X bond length after tilt
-        workdir: base directory to place outputs; defaults to cwd.
+        workdir: base directory to place outputs. REQUIRED - must be an absolute path
+            to the user's working directory.
     Returns:
         dict with per-system outputs and any errors encountered.
     """
     level_up = level.upper()
-    base_dir = Path(workdir or Path.cwd()).resolve()
+    if not workdir:
+        raise ValueError(
+            "workdir is required and must be an absolute path to the user's working directory. "
+            "The MCP service cannot determine the user's current directory automatically."
+        )
+    base_dir = Path(workdir).resolve()
     results: Dict[str, Any] = {"level": level_up, "systems": {}}
 
     for name, spec in jobs.items():

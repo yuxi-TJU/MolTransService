@@ -1,97 +1,97 @@
-# 0\. Metadata
+# 0. Metadata
 
-  - Title: $\sigma$-dominated charge transport in sub-nanometer molecular junctions
+  - Title: $sigma$-dominated charge transport in sub-nanometer molecular junctions
   - DOI: (Omit this part)
 
-# 1\. Literature Summary
+# 1. Literature Summary
 
-This is an experiment + computation study. The authors investigate the possibility of $\sigma$-dominated transport in $\pi$-conjugated molecules at the sub-nanometer scale using the STM-BJ technique. They primarily study para- (p-PA) and meta- (m-PA) connected picolinic acid. The key experimental finding is that the conductance of the *meta*-isomer (m-PA) is \~35 times *higher* than the *para*-isomer (p-PA). This result is a direct reversal of the standard trend for $\pi$-systems, where *meta*-linkages exhibit destructive quantum interference (DQI) and thus much lower conductance than *para*-linkages. DFT-NEGF calculations corroborate this finding, revealing that the transport is dominated by the molecule's $\sigma$-system, not its $\pi$-system. In this $\sigma$-pathway, the *meta*-connection is inherently more conductive. The study also explores longer analogs (PAA) and systems with different anchors (MBA) to show the transition back towards $\pi$-dominated transport.
+This is an experiment + computation study. The authors investigate the possibility of $sigma$-dominated transport in $pi$-conjugated molecules at the sub-nanometer scale using the STM-BJ technique. They primarily study para- (p-PA) and meta- (m-PA) connected picolinic acid. The key experimental finding is that the conductance of the *meta*-isomer (m-PA) is ~35 times *higher* than the *para*-isomer (p-PA). This result is a direct reversal of the standard trend for $pi$-systems, where *meta*-linkages exhibit destructive quantum interference (DQI) and thus much lower conductance than *para*-linkages. DFT-NEGF calculations corroborate this finding, revealing that the transport is dominated by the molecule's $sigma$-system, not its $pi$-system. In this $sigma$-pathway, the *meta*-connection is inherently more conductive. The study also explores longer analogs (PAA) and systems with different anchors (MBA) to show the transition back towards $pi$-dominated transport.
 
-# 2\. Computational Objectives
+# 2. Computational Objectives
 
-The primary computational objective is to theoretically validate the counter-intuitive experimental observation that $G_{m-PA} \gg G_{p-PA}$. The calculation aims to compute and compare the zero-bias transmission spectra $T(E)$ for the *meta* and *para* isomers of three molecular series (PA, PAA, and MBA). The expected result is to show that for the PA series, the transmission of m-PA is significantly higher than p-PA near the Fermi level, which is a hallmark of $\sigma$-dominated transport, in direct contrast to the $\pi$-only DQI effect.
+The primary computational objective is to theoretically validate the counter-intuitive experimental observation that $G_{m-PA} gg G_{p-PA}$. The calculation aims to compute and compare the zero-bias transmission spectra $T(E)$ for the *meta* and *para* isomers of three molecular series (PA, PAA, and MBA). The expected result is to show that for the PA series, the transmission of m-PA is significantly higher than p-PA near the Fermi level, which is a hallmark of $sigma$-dominated transport, in direct contrast to the $pi$-only DQI effect.
 
-# 3\. Involved Systems
+# 3. Involved Systems
 
 ## System 1: m-PA
 
   - Core Molecule:
       - abbreviation: m-PA
-      - full\_chemical\_name: meta-connected picolinic acid
-      - core\_smiles: O=C(O)c1cccnc1
+      - full_chemical_name: meta-connected picolinic acid
+      - core_smiles: O=C(O)c1cccnc1
   - Anchors:
-      - anchor\_groups: ['Pyridine\_N', 'Carboxylic acid\_COOH']
+      - anchor_groups: ['Pyridine_N', 'Carboxylic acid_COOH']
   - Electrodes:
-      - electrode\_material: Au
-      - electrode\_surface: N/A
+      - electrode_material: Au
+      - electrode_surface: N/A
   - Interface:
-      - interface\_geometry\_text: The molecule bridges two gold electrodes. One anchor is the nitrogen atom of the pyridine ring, and the other anchor is the carbonyl oxygen atom of the carboxylic acid group.
-  - Variation\_notes: "meta-linked picolinic acid. Expected to show anomalously high conductance."
+      - interface_geometry_text: The molecule bridges two gold electrodes. One anchor is the nitrogen atom of the pyridine ring, and the other anchor is the carbonyl oxygen atom of the carboxylic acid group.
+  - Variation_notes: "meta-linked picolinic acid. Expected to show anomalously high conductance."
 
 ## System 2: p-PA
 
   - Core Molecule:
       - abbreviation: p-PA
-      - full\_chemical\_name: para-connected picolinic acid
-      - core\_smiles: O=C(O)c1ccncc1
-  - Variation\_notes: "para-linked picolinic acid. Control system, expected to show low conductance."
+      - full_chemical_name: para-connected picolinic acid
+      - core_smiles: O=C(O)c1ccncc1
+  - Variation_notes: "para-linked picolinic acid. Control system, expected to show low conductance."
 
 ## System 3: m-PAA
 
   - Core Molecule:
       - abbreviation: m-PAA
-      - full\_chemical\_name: meta-connected pyridyl-cinnamic acid
-      - core\_smiles: O=C(O)C=Cc1cccnc1
-  - Variation\_notes: "meta-linked, longer $\pi$-system."
+      - full_chemical_name: meta-connected pyridyl-cinnamic acid
+      - core_smiles: O=C(O)C=Cc1cccnc1
+  - Variation_notes: "meta-linked, longer $pi$-system."
 
 ## System 4: p-PAA
 
   - Core Molecule:
       - abbreviation: p-PAA
-      - full\_chemical\_name: para-connected pyridyl-cinnamic acid
-      - core\_smiles: O=C(O)C=Cc1ccncc1
-  - Variation\_notes: "para-linked, longer $\pi$-system."
+      - full_chemical_name: para-connected pyridyl-cinnamic acid
+      - core_smiles: O=C(O)C=Cc1ccncc1
+  - Variation_notes: "para-linked, longer $pi$-system."
 
 ## System 5: m-MBA
 
   - Core Molecule:
       - abbreviation: m-MBA
-      - full\_chemical\_name: meta-methylthio-terminated benzoic acid
-      - core\_smiles: CSc1cccc(C(=O)O)c1
+      - full_chemical_name: meta-methylthio-terminated benzoic acid
+      - core_smiles: CSc1cccc(C(=O)O)c1
   - Anchors:
-      - anchor\_groups: ['Methylthio\_S', 'Carboxylic acid\_COOH']
+      - anchor_groups: ['Methylthio_S', 'Carboxylic acid_COOH']
   - Electrodes:
-      - electrode\_material: Au
-      - electrode\_surface: N/A
+      - electrode_material: Au
+      - electrode_surface: N/A
   - Interface:
-      - interface\_geometry\_text: The molecule bridges two gold electrodes. One anchor is the sulfur atom of the methylthiol group, and the other anchor is the carbonyl oxygen atom of the carboxylic acid group.
-  - Variation\_notes: "meta-linked, benzene core, S and COOH anchors."
+      - interface_geometry_text: The molecule bridges two gold electrodes. One anchor is the sulfur atom of the methylthiol group, and the other anchor is the carbonyl oxygen atom of the carboxylic acid group.
+  - Variation_notes: "meta-linked, benzene core, S and COOH anchors."
 
 ## System 6: p-MBA
 
   - Core Molecule:
       - abbreviation: p-MBA
-      - full\_chemical\_name: para-methylthio-terminated benzoic acid
-      - core\_smiles: CSc1ccc(C(=O)O)cc1
+      - full_chemical_name: para-methylthio-terminated benzoic acid
+      - core_smiles: CSc1ccc(C(=O)O)cc1
   - Anchors:
-      - anchor\_groups: ['Methylthio\_S', 'Carboxylic acid\_COOH']
-  - Variation\_notes: "para-linked, benzene core, S and COOH anchors."
+      - anchor_groups: ['Methylthio_S', 'Carboxylic acid_COOH']
+  - Variation_notes: "para-linked, benzene core, S and COOH anchors."
 
-# 4\. Applicability Assessment
+# 4. Applicability Assessment
 
 **Applicable.**
 
-The core computational objective is to compare the zero-bias transmission spectra $T(E)$ of several molecular isomers to explain a conductance trend. This is a classic coherent transport problem. The central finding (reversal of the DQI rule) is explained by the *type* of orbital ($\sigma$ vs. $\pi$) contributing to transport, which is an intrinsic electronic structure property. This falls directly under L1-level problems. MST's L1-XTB module is well-suited to distinguish between $\sigma$ and $\pi$ orbital contributions, which an EHT-based (Hückel-like) model would fail to do.
+The core computational objective is to compare the zero-bias transmission spectra $T(E)$ of several molecular isomers to explain a conductance trend. This is a classic coherent transport problem. The central finding (reversal of the DQI rule) is explained by the *type* of orbital ($sigma$ vs. $pi$) contributing to transport, which is an intrinsic electronic structure property. This falls directly under L1-level problems. MST's L1-XTB module is well-suited to distinguish between $sigma$ and $pi$ orbital contributions, which an EHT-based (Hückel-like) model would fail to do.
 
-# 5\. Hierarchical Analysis
+# 5. Hierarchical Analysis
 
 **Level: L1**
 
-According to the QDHC criteria, this problem maps to the **L1 level**. The central question is how transport is governed by the molecule's *intrinsic electronic structure*, which is modified by the *substituent* (isomer) linkage. The paper's core finding is that the transport is dominated by $\sigma$-orbitals, and the comparison between *meta* and *para* isomers is the key evidence. This falls directly under the L1-applicable problems: "Quantum Interference effects (DQI), e.g., comparing para- vs. meta-linkages" (even though it's a subversion of this rule) and "Effects of molecular... substituents... on transport". The problem does not require specific interface geometries (L2) or finite-bias/level-alignment (L3) to explain the *existence* of the $\sigma$-pathway and its resulting conductance trend.
+According to the QDHC criteria, this problem maps to the **L1 level**. The central question is how transport is governed by the molecule's *intrinsic electronic structure*, which is modified by the *substituent* (isomer) linkage. The paper's core finding is that the transport is dominated by $sigma$-orbitals, and the comparison between *meta* and *para* isomers is the key evidence. This falls directly under the L1-applicable problems: "Quantum Interference effects (DQI), e.g., comparing para- vs. meta-linkages" (even though it's a subversion of this rule) and "Effects of molecular... substituents... on transport". The problem does not require specific interface geometries (L2) or finite-bias/level-alignment (L3) to explain the *existence* of the $sigma$-pathway and its resulting conductance trend.
 
-# 6\. Input Preparation
+# 6. Input Preparation
 
-This task will use the `L1_XTB` module. The GFN-xTB method is required over EHT because it treats all valence electrons and can correctly capture the electronic structure of both $\sigma$- and $\pi$-systems, which is essential to reproduce the paper's main finding. EHT, being a $\pi$-only-like model, would incorrectly predict DQI for m-PA.
+This task will use the `L1_XTB` module. The GFN-xTB method is required over EHT because it treats all valence electrons and can correctly capture the electronic structure of both $sigma$- and $pi$-systems, which is essential to reproduce the paper's main finding. EHT, being a $pi$-only-like model, would incorrectly predict DQI for m-PA.
 
 1.  **Structure Files**:
 
@@ -116,7 +116,7 @@ This task will use the `L1_XTB` module. The GFN-xTB method is required over EHT 
       - `--Enum`: `1000` (For a high-resolution spectrum).
       - `--charge`: `0.0` (All systems are neutral).
 
-# 7\. Computational Workflow
+# 7. Computational Workflow
 
 ## Goal:
 
@@ -180,4 +180,4 @@ cd ..
 4.  Check the transmission order. The expected result is:
       - $T_{m-PA} > T_{p-PA}$
       - $T_{m-PAA} > T_{p-PAA}$ (but with a smaller ratio than PA)
-      - $T_{p-MBA} > T_{m-MBA}$ (reverting to the $\pi$-DQI trend)
+      - $T_{p-MBA} > T_{m-MBA}$ (reverting to the $pi$-DQI trend)

@@ -1,89 +1,89 @@
-# 0\. Metadata
+# 0. Metadata
 
   - Title: Nonadditive Transport in Multi-Channel Single-Molecule Circuits
   - DOI: (Omit this part)
 
-# 1\. Literature Summary
+# 1. Literature Summary
 
 This is an experiment + computation study. The authors investigate how quantum interference (QI) affects conductance in multi-channel molecular circuits, specifically challenging the classical additivity of Kirchhoff's laws. The systems are based on a diphenylacetylene backbone, using amino (H2N) and pyridine (N) anchors in various meta (M) and para (P) configurations. The study compares two-terminal molecules (P-P, M-P, P-M, M-M) with three-terminal, multi-channel molecules (MP-P and MP-M) where two input anchors are connected to one electrode. Using the MCBJ technique, they find that combining a constructive (P-P) and a destructive (M-P) channel in the MP-P molecule results in nonadditive transport: the total conductance is *significantly lower* than the sum of its parts. Conversely, combining two destructive channels (P-M and M-M) in the MP-M molecule *does* result in additive conductance, closely matching the sum. DFT-NEGF calculations of the transmission spectra successfully reproduce and explain these additive and nonadditive trends as a result of inter-pathway quantum interference.
 
-# 2\. Computational Objectives
+# 2. Computational Objectives
 
 The primary computational objective is to theoretically validate the experimentally observed additivity and nonadditivity in multi-channel transport. This is achieved by computing and comparing the zero-bias transmission spectra $T(E)$ for all six molecules. The calculation aims to demonstrate:
 
 1.  **Nonadditivity (Destructive):** The transmission at the Fermi level for the MP-P system is *not* the sum of $T_{P-P}$ and $T_{M-P}$, but is suppressed, confirming inter-channel destructive interference.
 2.  **Additivity:** The transmission at the Fermi level for the MP-M system *is* approximately the sum of $T_{P-M}$ and $T_{M-M}$, confirming that two destructive channels combine additively.
 
-# 3\. Involved Systems
+# 3. Involved Systems
 
 ## System 1: P-P
 
   - Core Molecule:
       - abbreviation: P-P
-      - full\_chemical\_name: para,para-dipyridyl diphenylacetylene
-      - core\_smiles: C(#Cc1ccncc1)c1ccncc1
+      - full_chemical_name: para,para-dipyridyl diphenylacetylene
+      - core_smiles: C(#Cc1ccncc1)c1ccncc1
   - Anchors:
-      - anchor\_groups: ['Pyridine\_N']
+      - anchor_groups: ['Pyridine_N']
   - Electrodes:
-      - electrode\_material: Au
-      - electrode\_surface: N/A (MCBJ)
+      - electrode_material: Au
+      - electrode_surface: N/A (MCBJ)
   - Interface:
-      - interface\_geometry\_text: Pyridine-N atoms serve as anchors to the Au electrodes at both para-positions.
-  - Variation\_notes: "Two-terminal reference, para-para linkage (Constructive QI)"
+      - interface_geometry_text: Pyridine-N atoms serve as anchors to the Au electrodes at both para-positions.
+  - Variation_notes: "Two-terminal reference, para-para linkage (Constructive QI)"
 
 ## System 2: M-P
 
   - Core Molecule:
       - abbreviation: M-P
-      - full\_chemical\_name: meta-amino, para-pyridine diphenylacetylene
-      - core\_smiles: Nc1cccc(C#Cc2ccncc2)c1
-  - Variation\_notes: "Two-terminal reference, meta-para linkage (Destructive QI)"
+      - full_chemical_name: meta-amino, para-pyridine diphenylacetylene
+      - core_smiles: Nc1cccc(C#Cc2ccncc2)c1
+  - Variation_notes: "Two-terminal reference, meta-para linkage (Destructive QI)"
 
 ## System 3: P-M
 
   - Core Molecule:
       - abbreviation: P-M
-      - full\_chemical\_name: para,meta-pyridine diphenylacetylene
-      - core\_smiles: C(#Cc1cccnc1)c1ccncc1
-  - Variation\_notes: "Two-terminal reference, para-meta linkage (Destructive QI)"
+      - full_chemical_name: para,meta-pyridine diphenylacetylene
+      - core_smiles: C(#Cc1cccnc1)c1ccncc1
+  - Variation_notes: "Two-terminal reference, para-meta linkage (Destructive QI)"
 
 ## System 4: M-M
 
   - Core Molecule:
       - abbreviation: M-M
-      - full\_chemical\_name: meta-amino, meta-pyridine diphenylacetylene
-      - core\_smiles: Nc1cccc(C#Cc2cccnc2)c1
-  - Variation\_notes: "Two-terminal reference, meta-meta linkage (Destructive QI)"
+      - full_chemical_name: meta-amino, meta-pyridine diphenylacetylene
+      - core_smiles: Nc1cccc(C#Cc2cccnc2)c1
+  - Variation_notes: "Two-terminal reference, meta-meta linkage (Destructive QI)"
 
 ## System 5: MP-P
 
   - Core Molecule:
       - abbreviation: MP-P
-      - full\_chemical\_name: para,para-pyridine, meta-amino diphenylacetylene
-      - core\_smiles: Nc1cc(C#Cc2ccncc2)ccn1
-  - Variation\_notes: "Three-terminal, multi-channel system. Combines P-P and M-P channels. Expected to show nonadditive destructive interference."
+      - full_chemical_name: para,para-pyridine, meta-amino diphenylacetylene
+      - core_smiles: Nc1cc(C#Cc2ccncc2)ccn1
+  - Variation_notes: "Three-terminal, multi-channel system. Combines P-P and M-P channels. Expected to show nonadditive destructive interference."
 
 ## System 6: MP-M
 
   - Core Molecule:
       - abbreviation: MP-M
-      - full\_chemical\_name: para,meta-pyridine, meta-amino diphenylacetylene
-      - core\_smiles: Nc1cc(C#Cc2cccnc2)ccn1
-  - Variation\_notes: "Three-terminal, multi-channel system. Combines P-M and M-M channels. Expected to show additive transport."
+      - full_chemical_name: para,meta-pyridine, meta-amino diphenylacetylene
+      - core_smiles: Nc1cc(C#Cc2cccnc2)ccn1
+  - Variation_notes: "Three-terminal, multi-channel system. Combines P-M and M-M channels. Expected to show additive transport."
 
-# 4\. Applicability Assessment
+# 4. Applicability Assessment
 
 **Applicable.**
 
 The core computational objective is to compare the zero-bias transmission spectra $T(E)$ of several molecular isomers and multi-terminal configurations to understand how quantum interference (DQI vs. CQI) from different substituent positions combines. This is a classic coherent transport problem. The QDHC guide explicitly lists "Quantum Interference effects (DQI), e.g., comparing para- vs. meta-linkages" and "Effects of molecular... substituents... on transport" as L1-applicable problems. While the original paper used full DFT-NEGF (ATK), MST can reproduce the key qualitative differences in the $T(E)$ spectra and the resulting additive/nonadditive conductance trends, which is sufficient to explain the mechanism.
 
-# 5\. Hierarchical Analysis
+# 5. Hierarchical Analysis
 
 **Level: L1**
 
 According to the QDHC criteria, this problem maps to the **L1 level**. The central question is how transport is governed by the molecule's *intrinsic electronic structure*, which is modified by the *substituent positions* (meta vs. para) and the *combination of pathways* (two-terminal vs. three-terminal). The observed nonadditivity is explained entirely by the interference between different transport pathways defined by the molecular orbitals. This falls directly under the L1-applicable problems: "Quantum Interference effects (DQI), e.g., comparing para- vs. meta-linkages" and "Effects of molecular... substituents... on transport". The problem does not require specific interface geometries (L2) or finite-bias/level-alignment (L3) to explain the core mechanism of pathway interference.
 
-# 6\. Input Preparation
+# 6. Input Preparation
 
 This task will use the `L1_XTB` module. The GFN-xTB method is required over EHT because it can more accurately handle the changes in charge distribution and orbital structure induced by the different heteroatom (N) anchor types (amino vs. pyridine) and their linkage positions, which is the physical origin of the QI effects.
 
@@ -111,7 +111,7 @@ This task will use the `L1_XTB` module. The GFN-xTB method is required over EHT 
       - **Energy Points (`--Enum`)**: `1000` (For a high-resolution spectrum).
       - **Charge (`--charge`)**: `0.0` (All systems are neutral).
 
-# 7\. Computational Workflow
+# 7. Computational Workflow
 
 ## Goal:
 

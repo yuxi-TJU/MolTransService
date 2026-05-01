@@ -11,6 +11,9 @@ from sentence_transformers import SentenceTransformer
 
 from .report_parser import ParsedSystem
 
+# Morgan fingerprint generator (ECFP4, 2048 bits)
+_MORGAN_GENERATOR = AllChem.GetMorganGenerator(radius=2, fpSize=2048)
+
 
 @dataclass
 class QuerySystem:
@@ -18,6 +21,7 @@ class QuerySystem:
 
     name: Optional[str] = None
     core_smiles: Optional[str] = None
+    full_chemical_name: Optional[str] = None
     anchor_groups: Optional[Sequence[str]] = None
     electrode_material: Optional[str] = None
     electrode_surface: Optional[str] = None
@@ -39,7 +43,9 @@ class _SystemRecord:
     report_path: Path
     system_name: str
     core_smiles: Optional[str]
+    full_chemical_name: Optional[str]
     fingerprint: Optional[DataStructs.ExplicitBitVect]
+    chemical_name_embedding: Optional[np.ndarray]
     anchor_set: Sequence[str]
     electrode_material: Optional[str]
     electrode_surface: Optional[str]
@@ -55,8 +61,9 @@ class SystemSimilarityIndex:
         systems: Iterable[Tuple[str, Path, ParsedSystem]],
         *,
         model: Optional[SentenceTransformer] = None,
-        anchor_weight: float = 0.2,
-        smiles_weight: float = 0.5,
+        anchor_weight: float = 0.15,
+        smiles_weight: float = 0.35,
+        chemical_name_weight: float = 0.20,
         electrode_weight: float = 0.15,
         interface_weight: float = 0.15,
     ) -> None:
@@ -64,6 +71,7 @@ class SystemSimilarityIndex:
         self._records: List[_SystemRecord] = []
         self._weights = {
             "smiles": smiles_weight,
+            "chemical_name": chemical_name_weight,
             "anchors": anchor_weight,
             "electrode": electrode_weight,
             "interface": interface_weight,
@@ -74,7 +82,9 @@ class SystemSimilarityIndex:
                 report_path=path,
                 system_name=system.name,
                 core_smiles=system.core_smiles,
+                full_chemical_name=system.full_chemical_name,
                 fingerprint=self._fingerprint(system.core_smiles),
+                chemical_name_embedding=self._embed_text(system.full_chemical_name),
                 anchor_set=self._normalize_anchor_groups(system.anchor_groups),
                 electrode_material=self._normalize_token(system.electrode_material),
                 electrode_surface=self._normalize_token(system.electrode_surface),
@@ -82,6 +92,24 @@ class SystemSimilarityIndex:
                 interface_embedding=self._embed_text(system.interface_geometry_text),
             )
             self._records.append(record)
+
+    def _get_adjusted_weights(self, query: QuerySystem) -> Dict[str, float]:
+        """Get adjusted weights based on query content.
+        
+        When SMILES is not provided, redistribute its weight to chemical_name
+        to improve text-based chemical matching.
+        """
+        weights = self._weights.copy()
+        has_smiles = query.core_smiles and self._fingerprint(query.core_smiles) is not None
+        has_chemical_name = bool(query.full_chemical_name)
+        
+        if not has_smiles and has_chemical_name:
+            # Transfer SMILES weight to chemical_name when SMILES is unavailable
+            smiles_weight = weights.get("smiles", 0.0)
+            weights["chemical_name"] = weights.get("chemical_name", 0.0) + smiles_weight
+            weights["smiles"] = 0.0
+        
+        return weights
 
     def search(
         self,
@@ -92,9 +120,12 @@ class SystemSimilarityIndex:
         if not self._records or not query_systems:
             return []
 
-        # Pre-compute embeddings for query interface descriptions
+        # Pre-compute embeddings for query interface descriptions and chemical names
         query_embeddings = [
             self._embed_text(system.interface_geometry_text) for system in query_systems
+        ]
+        query_chemical_name_embeddings = [
+            self._embed_text(system.full_chemical_name) for system in query_systems
         ]
         query_anchors = [self._normalize_anchor_groups(system.anchor_groups or []) for system in query_systems]
         query_fingerprints = [self._fingerprint(system.core_smiles) for system in query_systems]
@@ -107,6 +138,7 @@ class SystemSimilarityIndex:
             best_score = -1.0
             best_components: Dict[str, float] = {}
             best_query_name: str = ""
+            best_weights: Dict[str, float] = {}
 
             for idx, query in enumerate(query_systems):
                 comp_scores = self._score_components(
@@ -120,12 +152,17 @@ class SystemSimilarityIndex:
                     record_surface=record.electrode_surface,
                     query_embed=query_embeddings[idx],
                     record_embed=record.interface_embedding,
+                    query_chemical_name_embed=query_chemical_name_embeddings[idx],
+                    record_chemical_name_embed=record.chemical_name_embedding,
                 )
-                score = sum(comp_scores[key] * self._weights[key] for key in self._weights)
+                # Use adjusted weights based on query content
+                adjusted_weights = self._get_adjusted_weights(query)
+                score = sum(comp_scores[key] * adjusted_weights[key] for key in adjusted_weights)
                 if score > best_score:
                     best_score = score
                     best_components = comp_scores
                     best_query_name = query.name or f"QuerySystem[{idx}]"
+                    best_weights = adjusted_weights
 
             if best_score < 0.0:
                 continue
@@ -163,7 +200,7 @@ class SystemSimilarityIndex:
         molecule = Chem.MolFromSmiles(smiles)
         if molecule is None:
             return None
-        return AllChem.GetMorganFingerprintAsBitVect(molecule, radius=2, nBits=2048)
+        return _MORGAN_GENERATOR.GetFingerprint(molecule)
 
     @staticmethod
     def _normalize_anchor_groups(groups: Sequence[str]) -> List[str]:
@@ -174,6 +211,19 @@ class SystemSimilarityIndex:
         if not token or token.strip().lower() in {"n/a", "null", "none"}:
             return None
         return token.strip().lower()
+
+    @staticmethod
+    def _compute_embedding_similarity(
+        query_embed: Optional[np.ndarray],
+        record_embed: Optional[np.ndarray],
+    ) -> float:
+        """Compute normalized cosine similarity between two embeddings."""
+        if query_embed is None or record_embed is None:
+            return 0.0
+        raw_score = float(np.dot(query_embed, record_embed))
+        # Normalize from [-1, 1] to [0, 1]
+        normalized = (raw_score + 1.0) / 2.0
+        return max(0.0, min(1.0, normalized))
 
     @staticmethod
     def _score_components(
@@ -188,10 +238,16 @@ class SystemSimilarityIndex:
         record_surface: Optional[str],
         query_embed: Optional[np.ndarray],
         record_embed: Optional[np.ndarray],
+        query_chemical_name_embed: Optional[np.ndarray],
+        record_chemical_name_embed: Optional[np.ndarray],
     ) -> Dict[str, float]:
         smiles_score = 0.0
         if query_fp is not None and record_fp is not None:
             smiles_score = float(DataStructs.TanimotoSimilarity(query_fp, record_fp))
+
+        chemical_name_score = SystemSimilarityIndex._compute_embedding_similarity(
+            query_chemical_name_embed, record_chemical_name_embed
+        )
 
         anchor_score = 0.0
         if query_anchors and record_anchors:
@@ -207,17 +263,13 @@ class SystemSimilarityIndex:
             # Blend surface into electrode component
             electrode_score = (electrode_score + surface_score) / 2 if electrode_score else surface_score
 
-        interface_score = 0.0
-        if query_embed is not None and record_embed is not None:
-            raw_interface = float(np.dot(query_embed, record_embed))
-            interface_score = (raw_interface + 1.0) / 2.0
-            if interface_score < 0.0:
-                interface_score = 0.0
-            elif interface_score > 1.0:
-                interface_score = 1.0
+        interface_score = SystemSimilarityIndex._compute_embedding_similarity(
+            query_embed, record_embed
+        )
 
         return {
             "smiles": smiles_score,
+            "chemical_name": chemical_name_score,
             "anchors": anchor_score,
             "electrode": electrode_score,
             "interface": interface_score,

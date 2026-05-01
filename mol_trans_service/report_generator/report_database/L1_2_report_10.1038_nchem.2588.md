@@ -1,61 +1,61 @@
-# 0\. Metadata
+# 0. Metadata
 
   - Title: Mechanically controlled quantum interference in individual π-stacked dimers
   - DOI: (Omit this part)
 
-# 1\. Literature Summary
+# 1. Literature Summary
 
 This is an experiment + computation study. The authors investigate how mechanically controlling the conformation of a π-stacked molecular dimer affects its electronic conductance. Using a mechanically controlled break junction (MCBJ) setup, they repeatedly pull apart a junction formed by a π-stacked dimer of S-OPE3 (an OPE3 molecule with one thiol anchor). They observe pronounced, quasiperiodic drops in conductance as the two monomers slide relative to each other. Theoretical calculations using DFT and the Landauer formalism (within the wide-band approximation) are performed on the dimer. The key finding is that these conductance drops are a direct result of destructive quantum interference (DQI), which is turned "on" and "off" by the changing stacking geometry and orbital overlap, demonstrating mechanical control of a quantum effect. A single, covalently-bonded S-OPE3-S molecule is used as a high-conductance control.
 
-# 2\. Computational Objectives
+# 2. Computational Objectives
 
 The primary computational objective is to theoretically validate the experimental observation that mechanical sliding of a π-stacked dimer can induce large, quasiperiodic conductance modulations. The calculation aims to compute the zero-bias conductance of the S-OPE3 dimer as a function of the relative displacement of the two monomers. The expected result is a plot showing sharp drops in conductance at specific, periodic displacements, and to confirm that these drops are caused by destructive quantum interference occurring at the Fermi energy. A secondary objective is to calculate the high conductance of the single-molecule S-OPE3-S control for comparison.
 
-# 3\. Involved Systems
+# 3. Involved Systems
 
 ## System 1: S-OPE3 dimer
 
   - Core Molecule:
 	  - abbreviation: S-OPE3
-      - full\_chemical_name: dimer of oligo-phenylene-ethynylene with one thiol
-      - core\_smiles: Sc1ccc(C#Cc2ccc(C#Cc3ccccc3)cc2)cc1
+      - full_chemical_name: dimer of oligo-phenylene-ethynylene with one thiol
+      - core_smiles: Sc1ccc(C#Cc2ccc(C#Cc3ccccc3)cc2)cc1
   - Anchors:
-      - anchor\_groups: ['Thiol\_SH']
+      - anchor_groups: ['Thiol_SH']
   - Electrodes:
-      - electrode\_material: Au
-      - electrode\_surface: N/A (Paper mentions "lithographically defined" electrodes and "explicit gold clusters" in some calculations)
+      - electrode_material: Au
+      - electrode_surface: N/A (Paper mentions "lithographically defined" electrodes and "explicit gold clusters" in some calculations)
   - Interface:
-      - interface\_geometry\_text: The junction is formed by two S-OPE3 molecules arranged in a π-stacked dimer. Each molecule is anchored to one gold electrode via its single thiol group. The transport pathway is therefore from one electrode, through one monomer, across the non-covalent π-stacked interface to the second monomer, and into the other electrode.
-  - Variation\_notes: "Main system, non-covalently bonded dimer. Calculations are performed by scanning the relative displacement of the two monomers."
+      - interface_geometry_text: The junction is formed by two S-OPE3 molecules arranged in a π-stacked dimer. Each molecule is anchored to one gold electrode via its single thiol group. The transport pathway is therefore from one electrode, through one monomer, across the non-covalent π-stacked interface to the second monomer, and into the other electrode.
+  - Variation_notes: "Main system, non-covalently bonded dimer. Calculations are performed by scanning the relative displacement of the two monomers."
 
 ## System 2: S-OPE3-S
 
   - Core Molecule:
 	  - abbreviation: S-OPE3-S
-      - full\_chemical_name: Oligo-phenylene-ethynylene with two thiol anchors
-      - core\_smiles: Sc1ccc(C#Cc2ccc(C#Cc3ccc(S)cc3)cc2)cc1
+      - full_chemical_name: Oligo-phenylene-ethynylene with two thiol anchors
+      - core_smiles: Sc1ccc(C#Cc2ccc(C#Cc3ccc(S)cc3)cc2)cc1
   - Anchors:
-      - anchor\_groups: ['Thiol\_SH']
+      - anchor_groups: ['Thiol_SH']
   - Electrodes:
-      - electrode\_material: Au
-      - electrode\_surface: N/A
+      - electrode_material: Au
+      - electrode_surface: N/A
   - Interface:
-      - interface\_geometry\_text: A single S-OPE3-S molecule covalently bridges the two gold electrodes via thiol-Au bonds at both ends.
-  - Variation\_notes: "Control system, single-molecule covalent junction."
+      - interface_geometry_text: A single S-OPE3-S molecule covalently bridges the two gold electrodes via thiol-Au bonds at both ends.
+  - Variation_notes: "Control system, single-molecule covalent junction."
 
-# 4\. Applicability Assessment
+# 4. Applicability Assessment
 
 **Applicable.**
 
 The core computational objective is to analyze the effect of molecular conformation (relative sliding/stretching) on quantum interference and conductance. This falls squarely within the capabilities of the L1 scheme, which is designed for such problems. The paper's own theoretical method uses the wide-band-limit (WBA) approximation, which is the physical basis of the L1 scheme. While the original paper also mentions calculations with explicit gold clusters (suggesting L2 physics), the primary finding (Fig 1c) is a WBA calculation of conductance vs. displacement, which is an L1-type "conformation scan". MST can reproduce this qualitative trend and mechanism.
 
-# 5\. Hierarchical Analysis
+# 5. Hierarchical Analysis
 
 **Level: L1**
 
 According to the QDHC criteria, this problem maps to the **L1 level**. The central question is how transport is "governed primarily by the molecule’s intrinsic electronic structure" and its conformation. The quasiperiodic conductance drops are caused by DQI, an effect inherent to the dimer's electronic structure at different stacking geometries. This is a classic example of "Effects of molecular conformation... on transport" and "Quantum Interference effects (DQI)", both of which are listed as L1-applicable problems. The problem does not depend on the specific details of the electrode cluster geometry (L2) or on finite-bias/level-alignment effects (L3).
 
-# 6\. Input Preparation
+# 6. Input Preparation
 
 This task will use the `L1_EHT` module. The `L1_EHT` module is explicitly noted as suitable for "scenarios requiring scans over many conformations (e.g., stretching)" and is very fast, making it ideal for generating the conductance vs. displacement curve, which requires many individual calculations.
 
@@ -73,7 +73,7 @@ This task will use the `L1_EHT` module. The `L1_EHT` module is explicitly noted 
       - `--Erange`: `-12 -8.5`
       - `--Enum`: `300`
 
-# 7\. Computational Workflow
+# 7. Computational Workflow
 
 ## Goal:
 

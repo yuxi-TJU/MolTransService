@@ -1,65 +1,65 @@
-# 0\. Metadata
+# 0. Metadata
 
   - Title: Single-molecule diodes with high rectification ratios through environmental control
   - DOI: (Omit this part)
 
-# 1\. Literature Summary
+# 1. Literature Summary
 
-This is an 'experiment + computation' study investigating a novel mechanism for achieving high rectification in single-molecule junctions. The authors use an STM-BJ setup with symmetric Au electrodes and symmetric molecules (e.g., TDO oligomers). The key finding is that high rectification (R \> 200) is induced by breaking the junction symmetry *environmentally*: an insulated tip ($\sim1~\mu m^{2}$ area) and a large-area substrate ($> 1~cm^{2}$) in a polar, ion-containing solvent (Propylene Carbonate) create an asymmetric electric double layer. This asymmetry in the electrostatic environment causes the molecular energy levels to shift asymmetrically under an applied bias (a bias-dependent Stark shift), leading to rectification. The paper supports this model by showing that LUMO-conducting (4,4'-bipyridine, TDO) and HOMO-conducting (4-4"-diamino-p-terphenyl) molecules rectify in opposite directions, as predicted. The computational part (DFT+$\Sigma$) is used to validate the model's assumptions by identifying the dominant transport channels (HOMO/LUMO) and their zero-bias alignment.
+This is an 'experiment + computation' study investigating a novel mechanism for achieving high rectification in single-molecule junctions. The authors use an STM-BJ setup with symmetric Au electrodes and symmetric molecules (e.g., TDO oligomers). The key finding is that high rectification (R > 200) is induced by breaking the junction symmetry *environmentally*: an insulated tip ($sim1~mu m^{2}$ area) and a large-area substrate ($> 1~cm^{2}$) in a polar, ion-containing solvent (Propylene Carbonate) create an asymmetric electric double layer. This asymmetry in the electrostatic environment causes the molecular energy levels to shift asymmetrically under an applied bias (a bias-dependent Stark shift), leading to rectification. The paper supports this model by showing that LUMO-conducting (4,4'-bipyridine, TDO) and HOMO-conducting (4-4"-diamino-p-terphenyl) molecules rectify in opposite directions, as predicted. The computational part (DFT+$Sigma$) is used to validate the model's assumptions by identifying the dominant transport channels (HOMO/LUMO) and their zero-bias alignment.
 
-# 2\. Computational Objectives
+# 2. Computational Objectives
 
 The primary rectification mechanism—an asymmetric potential drop from an environmental electric double layer—is out-of-scope for standard MST workflows.
 
 Therefore, the computational objective is redefined to reproduce the paper's *prerequisite* theoretical finding: the identification of the dominant transport channel (HOMO vs. LUMO) for the different molecular backbones, which the paper uses to explain the *direction* of rectification. The goal is to compute the zero-bias transmission spectra $T(E)$ for 4,4'-bipyridine (molecule **1**) and 4-4"-diamino-p-terphenyl (molecule **2**) and align them to the electrode Fermi level ($E_F$). The expected result is to show that molecule **1** is LUMO-conducting (LUMO-derived resonance is closest to $E_F$) and molecule **2** is HOMO-conducting (HOMO-derived resonance is closest to $E_F$).
 
-# 3\. Involved Systems
+# 3. Involved Systems
 
 ## System 1: 4,4'-bipyridine
 
   - Core Molecule:
       - abbreviation: 1
-      - full\_chemical\_name: 4,4'-bipyridine
-      - core\_smiles: N/A
+      - full_chemical_name: 4,4'-bipyridine
+      - core_smiles: N/A
   - Anchors:
-      - anchor\_groups: ['Pyridine\_N']
+      - anchor_groups: ['Pyridine_N']
   - Electrodes:
-      - electrode\_material: Au
-      - electrode\_surface: (111)
+      - electrode_material: Au
+      - electrode_surface: (111)
   - Interface:
-      - interface\_geometry\_text: Pyridine-N binds to an undercoordinated Au site. The paper's DFT uses Au(111) layers; this is modeled using an Au adatom on the Au(111) surface.
-  - Variation\_notes: "LUMO-conducting system."
+      - interface_geometry_text: Pyridine-N binds to an undercoordinated Au site. The paper's DFT uses Au(111) layers; this is modeled using an Au adatom on the Au(111) surface.
+  - Variation_notes: "LUMO-conducting system."
 
 ## System 2: 4-4"-diamino-p-terphenyl
 
   - Core Molecule:
       - abbreviation: 2
-      - full\_chemical\_name: 4-4"-diamino-p-terphenyl
-      - core\_smiles: N/A
+      - full_chemical_name: 4-4"-diamino-p-terphenyl
+      - core_smiles: N/A
   - Anchors:
-      - anchor\_groups: ['Amine\_NH2']
+      - anchor_groups: ['Amine_NH2']
   - Electrodes:
-      - electrode\_material: Au
-      - electrode\_surface: (111)
+      - electrode_material: Au
+      - electrode_surface: (111)
   - Interface:
-      - interface\_geometry\_text: Amine-N binds to an undercoordinated Au site, modeled using an Au adatom on the Au(111) surface.
-  - Variation\_notes: "HOMO-conducting system."
+      - interface_geometry_text: Amine-N binds to an undercoordinated Au site, modeled using an Au adatom on the Au(111) surface.
+  - Variation_notes: "HOMO-conducting system."
 
-# 4\. Applicability Assessment
+# 4. Applicability Assessment
 
 **Applicable.**
 
-The original paper's primary phenomenon (rectification from an asymmetric environmental double layer) and its computational method (DFT+$\Sigma$) are both out-of-scope per the QDHC guide.
+The original paper's primary phenomenon (rectification from an asymmetric environmental double layer) and its computational method (DFT+$Sigma$) are both out-of-scope per the QDHC guide.
 
 However, the *redefined computational objective* is to reproduce the paper's zero-bias analysis, which identifies the dominant transport channel (HOMO vs. LUMO) for different molecules. This is a question of **molecular level alignment with the electrode Fermi level**, which is precisely the problem the QDHC L3 scheme is designed to address. MST L3 uses DFTB+ and pre-calculated Surface Green's Functions (SGF) to achieve a proper, qualitative alignment of the molecular orbitals relative to the electrode $E_F$. This is sufficient to reproduce the key qualitative finding of whether the HOMO or LUMO is the closest transport channel.
 
-# 5\. Hierarchical Analysis
+# 5. Hierarchical Analysis
 
 **Level: L3**
 
 The problem maps to L3. The core question is "Is transport governed primarily by the HOMO or the LUMO?" This is fundamentally a question of *where* the respective frontier orbitals lie relative to the gold $E_F$. The paper's entire model for rectification direction relies on this distinction. The QDHC guide explicitly states that L3 is required for problems governed by "molecular level alignment with the electrode Fermi level" and is used to "explicitly identify the conducting channel relative to $E_F$." L1 or L2 cannot provide this proper alignment relative to the bulk electrode $E_F$.
 
-# 6\. Input Preparation
+# 6. Input Preparation
 
 Based on the L3 workflow, the user must prepare two full junction structure files based on MST templates. The adatom interface is a common model for both pyridine and amine linkers and will be used here.
 
@@ -72,7 +72,7 @@ Based on the L3 workflow, the user must prepare two full junction structure file
       - Create two separate directories: `m1_adatom/` and `m2_adatom/`.
       - Place `junction_adatom_m1.xyz` in the first directory and `junction_adatom_m2.xyz` in the second.
 
-# 7\. Computational Workflow
+# 7. Computational Workflow
 
 ## Goal:
 
@@ -127,7 +127,7 @@ Run the interactive `L3_Trans` module in *each* of the two directories.
 
       - Follow the interactive prompts:
           - `Enter POSCAR file name(...)`: `POSCAR`
-          - `Specify the energy range (...)`: `3` (This scans $E_F \pm 3$ eV, a reasonable range)
+          - `Specify the energy range (...)`: `3` (This scans $E_F pm 3$ eV, a reasonable range)
           - `Specify the energy interval (...)`: `0.01`
 
     <!-- end list -->

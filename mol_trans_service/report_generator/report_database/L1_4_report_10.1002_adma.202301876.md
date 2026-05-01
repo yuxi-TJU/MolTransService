@@ -1,76 +1,76 @@
-# 0\. Metadata
+# 0. Metadata
 
   - Title: Exploring Electronic Characteristics of Acceptor-Donor-Acceptor-Type Molecules by Single-Molecule Charge Transport
   - DOI: (Omit this part)
 
-# 1\. Literature Summary
+# 1. Literature Summary
 
 This is an experiment + computation study. The authors use STM-BJ measurements and theoretical calculations to investigate the charge transport properties of a specially designed Acceptor-Donor-Acceptor (A-D-A) molecule compared to a Donor-only (D) control molecule. The key experimental finding is that the A-D-A molecule exhibits a higher conductance than the shorter D molecule, which is contrary to typical length-dependent transport. The theoretical calculations (DFT-NEGF) explain this "nonclassical" observation by showing that the acceptor units on the A-D-A molecule introduce additional, well-conjugated molecular orbitals (specifically a new LUMO) that act as efficient transport channels near the Fermi level, which are absent in the D-only molecule. A secondary experiment uses protonation to break an internal S...O noncovalent lock, exposing -S anchors on the donor core. This allows measurement of transport through the donor part, and calculations confirm the assignment of different transport pathways.
 
-# 2\. Computational Objectives
+# 2. Computational Objectives
 
 The primary computational objective is to theoretically explain the "nonclassical" experimental result: why the longer A-D-A molecule (anchored via -CN groups) has a higher zero-bias conductance than the shorter D control molecule (anchored via -S groups). The calculation must compute and compare the zero-bias transmission spectra $T(E)$ for both systems. The expected result is to show that the $T(E)$ for A-D-A is higher near the Fermi level than for D, and to demonstrate that this is caused by new transport channels (molecular orbitals) introduced by the A-units. A secondary objective is to compare the calculated $T(E)$ of the protonated A-D-A-2 molecule through its -S anchors versus its -CN anchors to validate the experimental assignment of high and low conductance states.
 
-# 3\. Involved Systems
+# 3. Involved Systems
 
 ## System 1: A-D-A
 
   - Core Molecule:
       - abbreviation: A-D-A (or A-D-A-2CN)
-      - full\_chemical\_name: A-D-A-type F2Cl molecule
-      - core\_smiles: N#CC(C#N)=C1C(=Cc2cc3c(s2)-c2cc4c(cc2C3)-c2cc3c(cc2C4)-c2sc(C=C4C(=O)c5cc(Cl)c(Cl)cc5C4=C(C#N)C#N)cc2C3)C(=O)c2cc(Cl)c(Cl)cc21
+      - full_chemical_name: A-D-A-type F2Cl molecule
+      - core_smiles: N#CC(C#N)=C1C(=Cc2cc3c(s2)-c2cc4c(cc2C3)-c2cc3c(cc2C4)-c2sc(C=C4C(=O)c5cc(Cl)c(Cl)cc5C4=C(C#N)C#N)cc2C3)C(=O)c2cc(Cl)c(Cl)cc21
   - Anchors:
-      - anchor\_groups: ['Cyano\_CN']
+      - anchor_groups: ['Cyano_CN']
   - Electrodes:
-      - electrode\_material: Au
-      - electrode\_surface: N/A
+      - electrode_material: Au
+      - electrode_surface: N/A
   - Interface:
-      - interface\_geometry\_text: A single molecule bridges two gold electrodes. The primary transport pathway is through the two terminal -CN groups located on the acceptor units.
-  - Variation\_notes: "Main A-D-A system. The molecule also contains -S groups that are initially blocked by an S...O noncovalent lock."
+      - interface_geometry_text: A single molecule bridges two gold electrodes. The primary transport pathway is through the two terminal -CN groups located on the acceptor units.
+  - Variation_notes: "Main A-D-A system. The molecule also contains -S groups that are initially blocked by an S...O noncovalent lock."
 
 ## System 2: D
 
   - Core Molecule:
       - abbreviation: D (or D-2S)
-      - full\_chemical\_name: Thiophene-fused fluorene donor molecule
-      - core\_smiles: c1cc2c(s1)-c1cc3c(cc1C2)-c1cc2c(cc1C3)-c1sccc1C2
+      - full_chemical_name: Thiophene-fused fluorene donor molecule
+      - core_smiles: c1cc2c(s1)-c1cc3c(cc1C2)-c1cc2c(cc1C3)-c1sccc1C2
   - Anchors:
-      - anchor\_groups: ['Thiophene Sulfur\_S']
+      - anchor_groups: ['Thiophene Sulfur_S']
   - Electrodes:
-      - electrode\_material: Au
-      - electrode\_surface: N/A
+      - electrode_material: Au
+      - electrode_surface: N/A
   - Interface:
-      - interface\_geometry\_text: A single molecule bridges two gold electrodes via its two terminal -S (Thiophene) groups.
-  - Variation\_notes: "Control system, consists of only the donor unit."
+      - interface_geometry_text: A single molecule bridges two gold electrodes via its two terminal -S (Thiophene) groups.
+  - Variation_notes: "Control system, consists of only the donor unit."
 
 ## System 3: A-D-A-2
 
   - Core Molecule:
       - abbreviation: A-D-A-2
-      - full\_chemical\_name: Protonated A-D-A molecule (reverse conformation)
-      - core\_smiles: N/A
+      - full_chemical_name: Protonated A-D-A molecule (reverse conformation)
+      - core_smiles: N/A
   - Anchors:
-      - anchor\_groups: ['Cyano\_CN'] or ['Thiophene Sulfur\_S']
+      - anchor_groups: ['Cyano_CN'] or ['Thiophene Sulfur_S']
   - Electrodes:
-      - electrode\_material: Au
-      - electrode\_surface: N/A
+      - electrode_material: Au
+      - electrode_surface: N/A
   - Interface:
-      - interface\_geometry\_text: A single molecule bridges two gold electrodes. In this protonated conformer, the S...O lock is broken, allowing calculations to compare transport through the -S anchors (on the donor core) vs. the -CN anchors (on the acceptors).
-  - Variation\_notes: "Protonated conformation of System 1. Carries a +1 charge."
+      - interface_geometry_text: A single molecule bridges two gold electrodes. In this protonated conformer, the S...O lock is broken, allowing calculations to compare transport through the -S anchors (on the donor core) vs. the -CN anchors (on the acceptors).
+  - Variation_notes: "Protonated conformation of System 1. Carries a +1 charge."
 
-# 4\. Applicability Assessment
+# 4. Applicability Assessment
 
 **Applicable.**
 
 The core computational objective is to compare the transmission spectra $T(E)$ of different molecules (A-D-A vs. D) and different anchoring configurations (S-anchored vs. CN-anchored) to understand how the molecular structure (i.e., the addition of A-units) creates new transport channels. This is a problem of intrinsic molecular electronic structure. While the original paper uses a full DFT-NEGF method, the fundamental mechanism (presence vs. absence of new molecular orbitals) can be qualitatively and correctly reproduced by the L1 scheme.
 
-# 5\. Hierarchical Analysis
+# 5. Hierarchical Analysis
 
 **Level: L1**
 
 According to the QDHC criteria, this problem maps to the **L1 level**. The central question is how transport is "governed primarily by the molecule’s intrinsic electronic structure." The paper's core finding is that the A-D-A molecule's higher conductance is due to new molecular orbitals created by the acceptor "substituents." This is a classic L1-level problem, falling under "Effects of molecular conformation, substituents... on transport" and "correlations with... orbital character." The analysis does not depend on the specific details of the interface geometry (L2) or precise level alignment/finite bias (L3) to establish the *mechanism* of why new transport channels appear.
 
-# 6\. Input Preparation
+# 6. Input Preparation
 
 This task will use the `L1_XTB` module. The GFN-xTB method is more accurate than EHT and is better suited for these large, complex A-D-A molecules, especially for handling the protonated (charged) state of System 3.
 
@@ -100,13 +100,13 @@ This task will use the `L1_XTB` module. The GFN-xTB method is more accurate than
 
       - `-m`, `--method`: `1` (GFN1-xTB).
       - `-C`, `--coupling`: `1` (A reasonable default value).
-      - `--Erange`: `2` (To scan $\pm 2$ eV around $E_F$).
+      - `--Erange`: `2` (To scan $pm 2$ eV around $E_F$).
       - `--Enum`: `1000` (For high resolution).
       - `--charge`:
           - `0.0` for `A-D-A_CN` and `D_S`.
           - `1.0` for `A-D-A-2_S` and `A-D-A-2_CN` (to account for the added proton).
 
-# 7\. Computational Workflow
+# 7. Computational Workflow
 
 ## Goal:
 

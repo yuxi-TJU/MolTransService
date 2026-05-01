@@ -72,7 +72,7 @@ def serialize_results(results: List[RetrievalResult]) -> List[Dict[str, Any]]:
 
 
 def load_generation_materials(manual_dir: Path) -> Dict[str, Any]:
-    manual_prompt_path = manual_dir / "gen_report_prompt.md"
+    manual_prompt_path = manual_dir / "instruction_prompt.md"
     qdhc_path = manual_dir / "QDHC_Guide.md"
     mst_path = manual_dir / "MST_Manual.md"
     return {
@@ -213,13 +213,13 @@ class WorkflowData:
         }
 
 
-def describe_flow():
-    print("\nExecution flow:")
-    print("  1. Environment variables loaded from .env (provider, model, API endpoint/key, directories).")
-    print("  2. Parsing LLM extracts phenomenon/objective/system info from the query.")
-    print("  3. Retrieval engine evaluates phenomenon/objective/system similarity and ranks reports.")
-    print("  4. QDHC/MST manuals plus top reports feed the generation LLM via manual/gen_report_prompt.md.")
-    print("  5. Generated Markdown report and consolidated JSON record are saved under the configured output directory.")
+# def describe_flow():
+#     print("\nExecution flow:")
+#     print("  1. Environment variables loaded from .env (provider, model, API endpoint/key, directories).")
+#     print("  2. Parsing LLM extracts phenomenon/objective/system info from the query.")
+#     print("  3. Retrieval engine evaluates phenomenon/objective/system similarity and ranks reports.")
+#     print("  4. QDHC/MST manuals plus top reports feed the generation LLM via manual/instruction.md.")
+#     print("  5. Generated Markdown report and consolidated JSON record are saved under the configured output directory.")
 
 
 def run_parse_and_retrieve(

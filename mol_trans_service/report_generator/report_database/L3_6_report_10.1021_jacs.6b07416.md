@@ -1,20 +1,20 @@
-# 0\. Metadata
+# 0. Metadata
 
   - Title: Resonant charge transport in conjugated molecular wires beyond 10 nm range
   - DOI: (Omit this part)
 
-# 1\. Literature Summary
+# 1. Literature Summary
 
-This is an 'experiment + computation' study on long-range charge transport in single molecular wires. The authors use a scanning tunneling microscope (STM) to repeatedly lift and measure the conductance of single poly-porphyrin (bp-ppo) wires on a Au(111) surface, testing lengths from 1.3 nm up to 13 nm. The key experimental finding is that for wires longer than 6 nm, the conductance becomes nearly length-independent (attenuation $\beta < 0.001 \AA^{-1}$), which is a hallmark of coherent resonant transport. The paper's computations (DFT+NEGF using ATK) support this finding, revealing that the high, length-independent conductance is mediated by a delocalized Lowest Unoccupied Molecular Orbital (LUMO) acting as the resonant transport channel. The computations also successfully model the observed conductance peak shifts as a function of wire length and applied bias.
+This is an 'experiment + computation' study on long-range charge transport in single molecular wires. The authors use a scanning tunneling microscope (STM) to repeatedly lift and measure the conductance of single poly-porphyrin (bp-ppo) wires on a Au(111) surface, testing lengths from 1.3 nm up to 13 nm. The key experimental finding is that for wires longer than 6 nm, the conductance becomes nearly length-independent (attenuation $beta < 0.001 AA^{-1}$), which is a hallmark of coherent resonant transport. The paper's computations (DFT+NEGF using ATK) support this finding, revealing that the high, length-independent conductance is mediated by a delocalized Lowest Unoccupied Molecular Orbital (LUMO) acting as the resonant transport channel. The computations also successfully model the observed conductance peak shifts as a function of wire length and applied bias.
 
-# 2\. Computational Objectives
+# 2. Computational Objectives
 
 The primary computational objective is to support and explain the experimental findings of length-dependent resonant transport. The goal is to compute the non-equilibrium transport properties (specifically, the bias-dependent transmission or differential conductance) for oligomers of increasing length. The expected result is to show that:
 
 1.  Transport is dominated by a LUMO-based resonance.
 2.  The conductance peaks associated with this resonance shift to more negative bias voltages as the molecular wire length increases, corroborating the experimental $dI/dV$ measurements (Fig. 4f) and LDC maps (Fig. 4d, e).
 
-# 3\. Involved Systems
+# 3. Involved Systems
 
 The paper's computational models focus on simulating the "strong contact" case, which the SI notes is modeled using an Au-S bond. The simulations in Fig. 4f and S6 compare double and triple TPP units.
 
@@ -22,39 +22,39 @@ The paper's computational models focus on simulating the "strong contact" case, 
 
   - Core Molecule:
       - abbreviation: bp-ppo (2-unit)
-      - full\_chemical\_name: N/A
-      - core\_smiles: N/A
+      - full_chemical_name: N/A
+      - core_smiles: N/A
   - Anchors:
-      - anchor\_groups: ['Thiolate\_S-']
+      - anchor_groups: ['Thiolate_S-']
   - Electrodes:
-      - electrode\_material: Au
-      - electrode\_surface: (111)
+      - electrode_material: Au
+      - electrode_surface: (111)
   - Interface:
-      - interface\_geometry\_text: Thiolate-S (modeling the experimental 'strong contact') binds to Au(111) electrodes. The simulation models (e.g., Fig S6a) show the molecule bridging two flat Au electrodes.
-  - Variation\_notes: "Double TPP unit (n=2) wire, corresponding to the black trace in Fig. 4f."
+      - interface_geometry_text: Thiolate-S (modeling the experimental 'strong contact') binds to Au(111) electrodes. The simulation models (e.g., Fig S6a) show the molecule bridging two flat Au electrodes.
+  - Variation_notes: "Double TPP unit (n=2) wire, corresponding to the black trace in Fig. 4f."
 
 ## System 2: Triple-unit bp-ppo
 
   - Core Molecule:
       - abbreviation: bp-ppo (3-unit)
-      - full\_chemical\_name: N/A
-      - core\_smiles: N/A
+      - full_chemical_name: N/A
+      - core_smiles: N/A
   - (Anchors, Electrodes, and Interface are the same as System 1)
-  - Variation\_notes: "Triple TPP unit (n=3) wire, corresponding to the red trace in Fig. 4f."
+  - Variation_notes: "Triple TPP unit (n=3) wire, corresponding to the red trace in Fig. 4f."
 
-# 4\. Applicability Assessment
+# 4. Applicability Assessment
 
 **Applicable.**
 
 The original paper uses DFT+NEGF (with LDA/GGA functionals) to compute finite-bias $dI/dV$ and $T(E,V)$ spectra. The core objective—calculating non-equilibrium transport to see how resonance peaks shift with bias and length—is precisely the intended use case for the MST L3 scheme. The QDHC guide identifies "I–V or dI/dV characteristics" and "applied finite bias" as L3 problems. While MST L3 uses DFTB+ (a different electronic structure method), it employs the same NEGF formalism and simulates finite bias with a Uniform External Electric Field (EEF), making it suitable for reproducing the qualitative trends (i.e., the *direction* of the peak shift) reported in the paper's computations. The paper also finds the metal center (Fe) is not critical for long-range transport, so modeling the free-base porphyrin is appropriate.
 
-# 5\. Hierarchical Analysis
+# 5. Hierarchical Analysis
 
 **Level: L3**
 
 The core computational evidence in the paper consists of finite-bias differential conductance ($dI/dV$) spectra (Fig. 4f) and bias-dependent transmission maps ($T(E,V)$) (Fig. 3b, S6b). The computational objective is to explain how the LUMO resonance shifts as a function of *both* molecular length and *applied bias*. This is fundamentally a non-equilibrium transport problem. The QDHC guide explicitly states that L3 is required for "I–V or dI/dV characteristics" and problems governed by "applied finite bias". L1 and L2 modules are designed for zero-bias calculations and cannot reproduce these key results.
 
-# 6\. Input Preparation
+# 6. Input Preparation
 
 Based on the L3 workflow, full junction structures must be manually created for the two systems.
 
@@ -69,7 +69,7 @@ Based on the L3 workflow, full junction structures must be manually created for 
       - Create two directories: `n2/`, `n3/`.
       - Place each corresponding `junction_trimer_...xyz` file into its directory.
 
-# 7\. Computational Workflow
+# 7. Computational Workflow
 
 ## Goal:
 
@@ -116,7 +116,7 @@ Run the `current_parallel.py` script in *each* of the two directories to compute
 
       - `poscar_file`: `"POSCAR"`
       - `Length`: Set this to the specific measured length for the system in that directory (e.g., `L_2unit` or `L_3unit`).
-      - `input_energy_range`: `3` (The paper's spectra span several eV, e.g., -2.0V to 2.0V, so $E_F \pm 3$ eV provides a safe window).
+      - `input_energy_range`: `3` (The paper's spectra span several eV, e.g., -2.0V to 2.0V, so $E_F pm 3$ eV provides a safe window).
       - `input_energy_interval`: `0.01`
       - `electric_field_range`: `np.arange(-0.0008, 0.0009, 0.0001)` (This scans a range of positive and negative fields to map the bias-dependent behavior).
       - `max_workers`: Set based on available system RAM (e.g., `2`).

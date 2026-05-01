@@ -1,77 +1,77 @@
-# 0\. Metadata
+# 0. Metadata
 
   - Title: Single-Molecule Sensing of Environmental pH—an STM Break Junction and NEGF-DFT Approach
   - DOI: (Omit this part)
 
-# 1\. Literature Summary
+# 1. Literature Summary
 
 This is an experiment + computation study. The authors demonstrate a single-molecule pH sensor using two dye molecules, Pararosaniline (PA) and Malachite Green (MG), in an STM break junction (STM-BJ) setup. They find that the molecules can be reversibly switched between a high-conductance "ON" state at acidic pH (5.5) and a low-conductance "OFF" state at basic pH (13.6), exhibiting a high on/off ratio of approximately 100:1. This switching is caused by a pH-induced reversible structural transformation: the low-pH form is conjugated (sp²-hybridized central carbon), while the high-pH form has its conjugation broken by the addition of an OH group to the central carbon (sp³ hybridization). NEGF-DFT calculations confirm this mechanism, showing that the conjugated "ON" state has high transmission near the Fermi level (LUMO-mediated), whereas the non-conjugated "OFF" state has a much larger HOMO-LUMO gap and the LUMO is shifted to a high energy, resulting in significantly lower transmission.
 
-# 2\. Computational Objectives
+# 2. Computational Objectives
 
 The primary computational objective is to theoretically validate the experimentally observed high-contrast (≈100:1) conductance switching. The calculation aims to compute the zero-bias transmission spectra $T(E)$ for both PA and MG in their two distinct structural forms: the conjugated (low pH, "ON" state) and the non-conjugated (high pH, "OFF" state). The expected result is to show that the transmission near the Fermi level for the conjugated forms is several orders of magnitude higher than for the non-conjugated forms, thereby explaining the observed switching mechanism.
 
-# 3\. Involved Systems
+# 3. Involved Systems
 
 ## System 1: PA (conjugated)
 
   - Core Molecule:
       - abbreviation: PA (pH 5.5)
-      - full\_chemical\_name: Pararosaniline (conjugated cation form)
-      - core\_smiles: N/A
+      - full_chemical_name: Pararosaniline (conjugated cation form)
+      - core_smiles: N/A
   - Anchors:
-      - anchor\_groups: ['Amine\_NH2']
+      - anchor_groups: ['Amine_NH2']
   - Electrodes:
-      - electrode\_material: Au
-      - electrode\_surface: N/A (Calculations in paper use explicit Au clusters)
+      - electrode_material: Au
+      - electrode_surface: N/A (Calculations in paper use explicit Au clusters)
   - Interface:
-      - interface\_geometry\_text: Amine ($NH_2$) groups at both ends of the molecule bind to the gold electrodes.
-  - Variation\_notes: "Conjugated (sp²) 'ON' state. Molecule is a cation (charge +1)."
+      - interface_geometry_text: Amine ($NH_2$) groups at both ends of the molecule bind to the gold electrodes.
+  - Variation_notes: "Conjugated (sp²) 'ON' state. Molecule is a cation (charge +1)."
 
 ## System 2: PA (non-conjugated)
 
   - Core Molecule:
       - abbreviation: PA (pH 13.6)
-      - full\_chemical\_name: Pararosaniline (non-conjugated neutral form)
-      - core\_smiles: N/A
-  - Variation\_notes: "Non-conjugated (sp³) 'OFF' state. An OH group is bonded to the central carbon. Molecule is neutral."
+      - full_chemical_name: Pararosaniline (non-conjugated neutral form)
+      - core_smiles: N/A
+  - Variation_notes: "Non-conjugated (sp³) 'OFF' state. An OH group is bonded to the central carbon. Molecule is neutral."
 
 ## System 3: MG (conjugated)
 
   - Core Molecule:
       - abbreviation: MG (pH 5.5)
-      - full\_chemical\_name: Malachite Green (conjugated cation form)
-      - core\_smiles: N/A
+      - full_chemical_name: Malachite Green (conjugated cation form)
+      - core_smiles: N/A
   - Anchors:
-      - anchor\_groups: ['Dimethylamine\_N(CH3)2']
+      - anchor_groups: ['Dimethylamine_N(CH3)2']
   - Electrodes:
-      - electrode\_material: Au
-      - electrode\_surface: N/A (Calculations in paper use explicit Au clusters)
+      - electrode_material: Au
+      - electrode_surface: N/A (Calculations in paper use explicit Au clusters)
   - Interface:
-      - interface\_geometry\_text: Dimethylamine ($N(CH_3)_2$) groups at both ends of the molecule bind to the gold electrodes.
-  - Variation\_notes: "Conjugated (sp²) 'ON' state. Molecule is a cation (charge +1)."
+      - interface_geometry_text: Dimethylamine ($N(CH_3)_2$) groups at both ends of the molecule bind to the gold electrodes.
+  - Variation_notes: "Conjugated (sp²) 'ON' state. Molecule is a cation (charge +1)."
 
 ## System 4: MG (non-conjugated)
 
   - Core Molecule:
       - abbreviation: MG (pH 13.6)
-      - full\_chemical\_name: Malachite Green (non-conjugated neutral form)
-      - core\_smiles: CN(C)C1=CC=C(C=C1)C(C2=CC=CC=C2)(C3=CC=C(C=C3)N(C)C)O[H]
-  - Variation\_notes: "Non-conjugated (sp³) 'OFF' state. An OH group is bonded to the central carbon. Molecule is neutral."
+      - full_chemical_name: Malachite Green (non-conjugated neutral form)
+      - core_smiles: CN(C)C1=CC=C(C=C1)C(C2=CC=CC=C2)(C3=CC=C(C=C3)N(C)C)O[H]
+  - Variation_notes: "Non-conjugated (sp³) 'OFF' state. An OH group is bonded to the central carbon. Molecule is neutral."
 
-# 4\. Applicability Assessment
+# 4. Applicability Assessment
 
 **Applicable.**
 
-The core computational objective is to compare the zero-bias transmission spectra $T(E)$ of four different molecular systems (two molecules, each in two structural forms). The conductance switch is driven by a fundamental change in the molecule's intrinsic electronic structure (breaking of $\pi$-conjugation and a massive change in the HOMO-LUMO gap) induced by a structural change (sp² to sp³). This falls squarely within the "Effects of molecular conformation/structural effects... on transport" category. While the original paper uses NEGF-DFT with explicit clusters (which suggests L2/L3 physics) to get level alignment, the *mechanism* itself (the large gap opening) is an intrinsic molecular property that the L1 scheme is designed to capture. MST can reproduce the qualitative difference in $T(E)$ and the resulting on/off ratio.
+The core computational objective is to compare the zero-bias transmission spectra $T(E)$ of four different molecular systems (two molecules, each in two structural forms). The conductance switch is driven by a fundamental change in the molecule's intrinsic electronic structure (breaking of $pi$-conjugation and a massive change in the HOMO-LUMO gap) induced by a structural change (sp² to sp³). This falls squarely within the "Effects of molecular conformation/structural effects... on transport" category. While the original paper uses NEGF-DFT with explicit clusters (which suggests L2/L3 physics) to get level alignment, the *mechanism* itself (the large gap opening) is an intrinsic molecular property that the L1 scheme is designed to capture. MST can reproduce the qualitative difference in $T(E)$ and the resulting on/off ratio.
 
-# 5\. Hierarchical Analysis
+# 5. Hierarchical Analysis
 
 **Level: L1**
 
 According to the QDHC criteria, this problem maps to the **L1 level**. The central question is how transport is governed by the molecule's *intrinsic electronic structure* and how that structure is fundamentally altered by a pH-induced structural transformation. The paper's own analysis of the isolated molecules (Figure 1E) shows that the HOMO-LUMO gap nearly doubles for the non-conjugated form. This intrinsic property is the direct cause of the conductance switch. This is a classic example of "Effects of molecular... structural effects... on transport," which is an L1-applicable problem. The specific details of the interface (L2) or precise level alignment with the electrode $E_F$ (L3) are not necessary to explain the *existence* of the massive conductance drop, which is rooted in the molecule's broken conjugation.
 
-# 6\. Input Preparation
+# 6. Input Preparation
 
 This task will use the `L1_XTB` module. The GFN-xTB method is required over EHT because it can more accurately handle the significant changes in electronic structure, hybridization (sp² vs. sp³), and, crucially, the different charge states of the molecules.
 
@@ -91,7 +91,7 @@ This task will use the `L1_XTB` module. The GFN-xTB method is required over EHT 
           - `1.0` for `PA_conj.xyz` and `MG_conj.xyz` (cationic "ON" states).
           - `0.0` for `PA_nonconj.xyz` and `MG_nonconj.xyz` (neutral "OFF" states).
 
-# 7\. Computational Workflow
+# 7. Computational Workflow
 
 ## Goal:
 

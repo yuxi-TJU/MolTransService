@@ -1,17 +1,17 @@
-# 0\. Metadata
+# 0. Metadata
 
   - Title: Transport Modulation Through Electronegativity Gating in Multiple Nitrogenous Circuits
   - DOI: (Omit this part)
 
-# 1\. Literature Summary
+# 1. Literature Summary
 
-This is an experiment + computation study. The authors investigate how tuning the electronegativity of nitrogen atoms affects charge transport in single-molecule junctions. They designed and synthesized two series of molecules: one with a single nitrogenous conductive channel (Sg) and one with dual channels (Db). The electronegativity of the nitrogen atoms was modulated by either replacing a methyl group with hydrogen (Me vs. H) or by protonating the nitrogen with acid (e.g., Sg-Me -\> Sg-Me+). Using the STM-BJ technique, they found that conductance is suppressed as the nitrogen's electronegativity becomes more negative (i.e., upon H-substitution or protonation). This suppression effect is significantly more pronounced in the dual-channel (Db) series than in the single-channel (Sg) series. Theoretical calculations, including NEGF-DFT and frontier molecular orbital (FMO) analysis, confirm this trend, attributing the conductance suppression to the increased localization of the frontier orbitals caused by the change in electronegativity.
+This is an experiment + computation study. The authors investigate how tuning the electronegativity of nitrogen atoms affects charge transport in single-molecule junctions. They designed and synthesized two series of molecules: one with a single nitrogenous conductive channel (Sg) and one with dual channels (Db). The electronegativity of the nitrogen atoms was modulated by either replacing a methyl group with hydrogen (Me vs. H) or by protonating the nitrogen with acid (e.g., Sg-Me -> Sg-Me+). Using the STM-BJ technique, they found that conductance is suppressed as the nitrogen's electronegativity becomes more negative (i.e., upon H-substitution or protonation). This suppression effect is significantly more pronounced in the dual-channel (Db) series than in the single-channel (Sg) series. Theoretical calculations, including NEGF-DFT and frontier molecular orbital (FMO) analysis, confirm this trend, attributing the conductance suppression to the increased localization of the frontier orbitals caused by the change in electronegativity.
 
-# 2\. Computational Objectives
+# 2. Computational Objectives
 
 The primary computational objective is to theoretically validate the experimentally observed conductance trends for both the Sg and Db series. This involves demonstrating that conductance decreases as the nitrogen atom's electronegativity is reduced (chemically modulated from Me to H, and from neutral to protonated cation). The calculation aims to compute and compare the zero-bias transmission spectra $T(E)$ for all eight molecules (Sg-Me, Sg-Me+, Sg-H, Sg-H+, Db-Me, Db-Me+, Db-H, Db-H+). The expected result is to show that the transmission at the Fermi level, $T(E_F)$, follows the experimentally observed order, and to confirm that the conductance suppression is more significant in the Db series than in the Sg series.
 
-# 3\. Involved Systems
+# 3. Involved Systems
 
 (All systems share the same Anchors, Electrodes, and Interface)
 
@@ -19,86 +19,86 @@ The primary computational objective is to theoretically validate the experimenta
 
   - Core Molecule:
       - abbreviation: Sg-Me
-      - full\_chemical\_name: Single-channel compound, methyl-substituted
-      - core\_smiles: N/A
+      - full_chemical_name: Single-channel compound, methyl-substituted
+      - core_smiles: N/A
   - Anchors:
-      - anchor\_groups: ['Methylthio\_SCH3']
+      - anchor_groups: ['Methylthio_SCH3']
   - Electrodes:
-      - electrode\_material: Au
-      - electrode\_surface: N/A
+      - electrode_material: Au
+      - electrode_surface: N/A
   - Interface:
-      - interface\_geometry\_text: Molecule anchored via terminal methylthio (SMe) groups to Au electrodes in an STM-BJ configuration.
-  - Variation\_notes: "Single-channel, neutral, methyl-substituted."
+      - interface_geometry_text: Molecule anchored via terminal methylthio (SMe) groups to Au electrodes in an STM-BJ configuration.
+  - Variation_notes: "Single-channel, neutral, methyl-substituted."
 
 ## System 2: Sg-Me+
 
   - Core Molecule:
       - abbreviation: Sg-Me+
-      - full\_chemical\_name: Single-channel compound, methyl-substituted, protonated
-      - core\_smiles: N/A
-  - Variation\_notes: "Single-channel, protonated cation (+1 charge), methyl-substituted."
+      - full_chemical_name: Single-channel compound, methyl-substituted, protonated
+      - core_smiles: N/A
+  - Variation_notes: "Single-channel, protonated cation (+1 charge), methyl-substituted."
 
 ## System 3: Sg-H
 
   - Core Molecule:
       - abbreviation: Sg-H
-      - full\_chemical\_name: Single-channel compound, hydrogen-substituted
-      - core\_smiles: N/A
-  - Variation\_notes: "Single-channel, neutral, hydrogen-substituted."
+      - full_chemical_name: Single-channel compound, hydrogen-substituted
+      - core_smiles: N/A
+  - Variation_notes: "Single-channel, neutral, hydrogen-substituted."
 
 ## System 4: Sg-H+
 
   - Core Molecule:
       - abbreviation: Sg-H+
-      - full\_chemical\_name: Single-channel compound, hydrogen-substituted, protonated
-      - core\_smiles: N/A
-  - Variation\_notes: "Single-channel, protonated cation (+1 charge), hydrogen-substituted."
+      - full_chemical_name: Single-channel compound, hydrogen-substituted, protonated
+      - core_smiles: N/A
+  - Variation_notes: "Single-channel, protonated cation (+1 charge), hydrogen-substituted."
 
 ## System 5: Db-Me
 
   - Core Molecule:
       - abbreviation: Db-Me
-      - full\_chemical\_name: Dual-channel compound, methyl-substituted
-      - core\_smiles: N/A
-  - Variation\_notes: "Dual-channel, neutral, methyl-substituted."
+      - full_chemical_name: Dual-channel compound, methyl-substituted
+      - core_smiles: N/A
+  - Variation_notes: "Dual-channel, neutral, methyl-substituted."
 
 ## System 6: Db-Me+
 
   - Core Molecule:
       - abbreviation: Db-Me+
-      - full\_chemical\_name: Dual-channel compound, methyl-substituted, protonated
-      - core\_smiles: N/A
-  - Variation\_notes: "Dual-channel, protonated cation (+1 charge), methyl-substituted."
+      - full_chemical_name: Dual-channel compound, methyl-substituted, protonated
+      - core_smiles: N/A
+  - Variation_notes: "Dual-channel, protonated cation (+1 charge), methyl-substituted."
 
 ## System 7: Db-H
 
   - Core Molecule:
       - abbreviation: Db-H
-      - full\_chemical\_name: Dual-channel compound, hydrogen-substituted
-      - core\_smiles: N/A
-  - Variation\_notes: "Dual-channel, neutral, hydrogen-substituted."
+      - full_chemical_name: Dual-channel compound, hydrogen-substituted
+      - core_smiles: N/A
+  - Variation_notes: "Dual-channel, neutral, hydrogen-substituted."
 
 ## System 8: Db-H+
 
   - Core Molecule:
       - abbreviation: Db-H+
-      - full\_chemical\_name: Dual-channel compound, hydrogen-substituted, protonated
-      - core\_smiles: N/A
-  - Variation\_notes: "Dual-channel, protonated cation (+1 charge), hydrogen-substituted."
+      - full_chemical_name: Dual-channel compound, hydrogen-substituted, protonated
+      - core_smiles: N/A
+  - Variation_notes: "Dual-channel, protonated cation (+1 charge), hydrogen-substituted."
 
-# 4\. Applicability Assessment
+# 4. Applicability Assessment
 
 **Applicable.**
 
 The core computational objective is to compare the zero-bias transmission spectra $T(E)$ of several molecules with different substituents (Me vs. H) and in different charge states (neutral vs. protonated cation). This is a classic coherent transport problem. The paper's own theoretical explanation (Fig 4) relies heavily on the analysis of frontier orbitals of the *isolated molecules* and how their localization changes, which is an intrinsic molecular property. This falls directly within the scope of the QDHC framework. The NEGF-DFT calculations in the paper (Fig 5) are used to confirm the relative trend of $T(E_F)$, which can be qualitatively reproduced by the L1 scheme.
 
-# 5\. Hierarchical Analysis
+# 5. Hierarchical Analysis
 
 **Level: L1**
 
 According to the QDHC criteria, this problem maps to the **L1 level**. The central question is how transport is governed by the molecule's *intrinsic electronic structure*, which is being modified by *substituents* (Me vs. H) and *charge state* (protonation). This falls directly under the L1-applicable problems: "Effects of molecular... substituents, or charge state on transport" (QDHC Guide, Sec 3.1; MST Manual, L1 Overview). The paper's primary explanation is based on the localization of isolated-molecule frontier orbitals, a property inherent to the molecule. The goal is to compare the relative transmission values at $E_F$ for the eight systems, which does not require the explicit interface modeling of L2 or the precise level alignment of L3.
 
-# 6\. Input Preparation
+# 6. Input Preparation
 
 This task will use the `L1_XTB` module. The GFN-xTB method is required over EHT because it can properly handle non-neutral (charged) systems and is more reliable for capturing the electronic structure differences induced by the different substituents and charge states.
 
@@ -127,7 +127,7 @@ This task will use the `L1_XTB` module. The GFN-xTB method is required over EHT 
           * `0.0` for Sg-Me, Sg-H, Db-Me, Db-H.
           * `1.0` for Sg-Me+, Sg-H+, Db-Me+, Db-H+.
 
-# 7\. Computational Workflow
+# 7. Computational Workflow
 
 ## Goal:
 

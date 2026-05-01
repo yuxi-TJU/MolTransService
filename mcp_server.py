@@ -95,18 +95,18 @@ Args:
     level (str, required): Calculation level. Must be one of: "L1", "L2", "L3".
     jobs (dict, required): Mapping of system_name -> specification dict.
         Each specification dict contains:
-        - molecule (str, required): Path to input XYZ file
+        - molecule (str, required): Path to input XYZ file (use absolute path)
         - anchors (list[int], required for L2/L3): [left_idx, right_idx] as 1-based atom indices
-        - template (str, optional): Path to electrode template XYZ. Auto-detected if not provided:
-            * L2: "4au-em.xyz" (pyramid) or "3au-em.xyz" (trimer)
-            * L3: "junction_example_pyramid_bipyridine.xyz", etc.
+        - template (str, optional): Template type or path. For L3: "pyramid", "trimer", or "adatom". Auto-detected if not provided.
         - bond_L (float, optional): Left Au-anchor bond length in Å. Default: 2.2 (N) or 2.4 (S)
         - bond_R (float, optional): Right Au-anchor bond length in Å. Default: same as bond_L
         - tilt_angle (float, optional, L2 only): Rotation angle in degrees for inclined EM (pyramid template only)
         - tilt_axis (str, optional): Rotation axis, "x" or "y". Default: "x"
         - tilt_direction (str, optional): "clockwise"/"cw" or "counterclockwise"/"ccw". Default: "counterclockwise"
         - tilt_bond_R (float, optional): Right Au-X bond length after tilt
-    workdir (str, optional): Base directory for outputs. Default: current working directory.
+    workdir (str, REQUIRED): Base directory for outputs. MUST be an absolute path to the user's working directory.
+        The MCP service runs as a separate process and cannot determine the user's current directory automatically.
+        Always use `pwd` or equivalent to get the absolute path before calling this tool.
 
 Returns:
     Dict with keys:

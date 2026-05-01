@@ -11,6 +11,7 @@ def build_query_system(args: argparse.Namespace) -> Optional[QuerySystem]:
     if not any(
         [
             args.core_smiles,
+            args.chemical_name,
             args.anchor_groups,
             args.electrode_material,
             args.electrode_surface,
@@ -26,6 +27,7 @@ def build_query_system(args: argparse.Namespace) -> Optional[QuerySystem]:
     return QuerySystem(
         name=args.system_name,
         core_smiles=args.core_smiles,
+        full_chemical_name=args.chemical_name,
         anchor_groups=anchor_groups,
         electrode_material=args.electrode_material,
         electrode_surface=args.electrode_surface,
@@ -66,6 +68,12 @@ def parse_args() -> argparse.Namespace:
         type=str,
         default="",
         help="Core molecule SMILES string for system similarity.",
+    )
+    parser.add_argument(
+        "--chemical-name",
+        type=str,
+        default="",
+        help="Full chemical name for system similarity (e.g., '4,4-bipyridine').",
     )
     parser.add_argument(
         "--anchor-groups",
@@ -135,10 +143,11 @@ def main() -> None:
                 )
                 print(
                     "   component scores: "
-                    f"smiles={details.component_scores['smiles']:.3f}, "
-                    f"anchors={details.component_scores['anchors']:.3f}, "
-                    f"electrode={details.component_scores['electrode']:.3f}, "
-                    f"interface={details.component_scores['interface']:.3f}"
+                    f"smiles={details.component_scores.get('smiles', 0):.3f}, "
+                    f"chemical_name={details.component_scores.get('chemical_name', 0):.3f}, "
+                    f"anchors={details.component_scores.get('anchors', 0):.3f}, "
+                    f"electrode={details.component_scores.get('electrode', 0):.3f}, "
+                    f"interface={details.component_scores.get('interface', 0):.3f}"
                 )
         print()
 

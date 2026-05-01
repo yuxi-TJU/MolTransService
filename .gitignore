@@ -41,11 +41,27 @@ htmlcov/
 # Environment variables
 .env
 .env.local
+.env.*
 .env_*
+!.env.example
 
 # Generated outputs
 generated_outputs/
 *.log
+
+# Local-only analysis / experiment directories
+docs/
+benchmark/
+other/
+PROJECT_SUMMARY.md
+mol_trans_service/report_generator/ablation_study/
+mol_trans_service/report_generator/new_ablation_study_for_tier_assignment/
+mol_trans_service/report_generator/new_ablation_study_for_workflow_assessment/
+mol_trans_service/report_generator/report_database/db_analysis/
+
+# Historical manual copies
+mol_trans_service/report_generator/manual/backup/
+mol_trans_service/report_generator/manual/old/
 
 # OS
 .DS_Store

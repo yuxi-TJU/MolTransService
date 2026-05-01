@@ -1,10 +1,9 @@
+# MST Manual
+
 # MolSimTransport (MST) L1 Scheme Computation Guide
 
-## 1. L1 Scheme Overview
-The L1 scheme is the most fundamental tier in the QDHC framework, focusing on analyzing transport properties dominated by the molecule's intrinsic electronic structure.
+## 1. Considered System and Available Modules
  - **System of Study**: Isolated Molecule.
- - **Physical Approximation**: It employs the Wide-Band Approximation (WBA). The influence of the electrodes is simplified to a constant, energy-independent coupling strength (Γ) and self-energy (Σ=−iΓ/2) applied at the molecule's anchoring atoms.
- - **Applicable Problems**: Quantum Interference effects (DQI), e.g., comparing para- vs. meta-linkages; Fano resonances; Effects of molecular conformation, substituents, or charge state on transport.
  - **Available Modules**: MST provides two modules to perform L1 calculations: `L1_EHT` and `L1_XTB`.
 
 ## 2. Input Preparation
@@ -80,11 +79,8 @@ L1_XTB -f [filename] -L [left_indices] -R [right_indices] [options]
 
 # MolSimTransport (MST) L2 Scheme Computation Guide
 
-## 1. L2 Scheme Overview
-The L2 scheme is the intermediate tier in the QDHC framework, aimed at analyzing interface-dominated transport using an explicitly modeled "extended molecule + electrode clusters" system that captures local contact effects.
+## 1. Considered System and Available Modules
  - **System of Study**: "Extended Molecule + Electrode Clusters". The system explicitly includes the molecule plus the electrode atoms forming the interface. The extended molecule consists of the central molecule connected to 1, 3, or 4 Au atoms on each side, corresponding to the adatom, trimer, and pyramid configurations, respectively.
- - **Physical Approximation**: This scheme computes the Hamiltonian for the entire "Extended Molecule (EM) + Cluster" system . The electrode self-energy (Σ) is derived from the coupling matrices obtained via partitioning, combined with a constant local density of states (LDOS) approximation for the bulk electrode's Green's function.
- - **Applicable Problems**: Effects of contact geometry on coupling and conductance; Influence of anchoring chemistry (e.g., sp vs. sp3 hybridization) on resonance broadening; Transport through non-traditional binding motifs.
  - **Available Modules**: MST provides two modules for the L2 scheme: `L2_Align` (for building the full system) and `L2_Trans` (for calculation).
 
 ## 2. Input Preparation
@@ -150,13 +146,8 @@ L2_Trans
 
 # MolSimTransport (MST) L3 Scheme Computation Guide
 
-## 1. L3 Scheme Overview
-The L3 scheme is the most advanced tier in the QDHC framework, targeting problems dominated by level alignment or bias effects, and offering tools to analyze MPSH orbitals and transmission eigenstates.
-
+## 1. Considered System and Available Modules
  - **System of Study**: "Full Molecular Junction". The system for the electronic structure calculation consists of the Extended Molecule (EM) connected to the Principal Layers (PL) of the electrodes.
- - **Physical Approximation**: This scheme uses pre-calculated, energy-dependent Surface Green's Functions (SGF) for the bulk electrodes, which are loaded and interpolated during the transport calculation. This allows for a proper alignment of molecular orbitals to the electrode's Fermi level (E_F).
- - **Finite-Bias**: Non-equilibrium transport (I-V curves) is simulated by applying a Uniform External Electric Field (EEF) across the Extended Molecule region during the electronic structure calculation.
- - **Applicable Problems**: Determining the dominant transport channel by aligning the transmission spectrum to the electrode E_F. Calculating I-V characteristics, rectification ratios, and other finite-bias phenomena.
  - **Available Modules**: `L3_Trans` (zero-bias), `L3_EEF` (finite-bias, called by script), `L3_MPSH` (analysis), `L3_EC` (analysis).
 
 ## 2. Input Preparation
@@ -277,4 +268,4 @@ This module analyzes the the eigenchannel at a specific energy and projects it o
 	- **Eigenchannel Molden Files**: Generates three `.molden` files (corresponding to the absolute value, real part, and imaginary part) for the dominant eigenchannel to visualize its spatial distribution(e.g., `EigenChannel_abs_-1.82070.molden`).
 
 #### 4.3.3 Summary Analysis Workflow
-In a complete L3 zero-bias workflow, the `L3_Trans` module computes the transmission spectrum, and the `L3_EC` module identifies the MPSH orbitals that dominate the selected transmission peak. The `L3_MPSH` module then generates a Molden file for comparison with orbitals of the isolated molecule (provided separately using the same electronic structure level) to determine which molecular orbital or electrode atoms contributes to the transmission feature. It should be noted that this complete workflow is not required for every calculation; the analysis modules should be used only when such analyses are explicitly needed.
+In a complete L3 zero-bias workflow, the `L3_Trans` module computes the transmission spectrum, and the `L3_EC` module identifies the MPSH orbitals that dominate the selected transmission peak. The `L3_MPSH` module then generates a Molden file for comparison with orbitals of the isolated molecule (provided separately using the same electronic structure level) to determine which molecular orbital or electrode atoms contributes to the transmission feature.

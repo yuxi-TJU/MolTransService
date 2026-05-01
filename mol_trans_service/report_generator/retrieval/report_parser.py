@@ -8,7 +8,8 @@ from pathlib import Path
 from typing import Dict, Iterable, List, Optional
 
 
-SECTION_PATTERN = re.compile(r"^#\s*(\d+)(?:\\\.)?\s+(.*)$", re.MULTILINE)
+# Match section headers like "# 1. Title" or "# 1\. Title" or "# 1 Title"
+SECTION_PATTERN = re.compile(r"^#\s*(\d+)(?:\\?\.)?\s*(.*)$", re.MULTILINE)
 SYSTEM_PATTERN = re.compile(r"^##\s*System\s*\d+\s*:\s*(.+)$", re.MULTILINE)
 
 
@@ -19,6 +20,7 @@ class ParsedSystem:
     name: str
     raw_text: str
     core_smiles: Optional[str] = None
+    full_chemical_name: Optional[str] = None
     anchor_groups: List[str] = field(default_factory=list)
     electrode_material: Optional[str] = None
     electrode_surface: Optional[str] = None
@@ -99,6 +101,7 @@ class ReportParser:
             name=name,
             raw_text=block,
             core_smiles=fields.get("core_smiles"),
+            full_chemical_name=fields.get("full_chemical_name"),
             anchor_groups=self._parse_list(fields.get("anchor_groups")),
             electrode_material=fields.get("electrode_material"),
             electrode_surface=fields.get("electrode_surface"),
@@ -111,6 +114,7 @@ class ReportParser:
                 if key
                 not in {
                     "core_smiles",
+                    "full_chemical_name",
                     "anchor_groups",
                     "electrode_material",
                     "electrode_surface",

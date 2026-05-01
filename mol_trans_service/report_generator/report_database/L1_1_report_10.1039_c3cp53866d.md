@@ -1,60 +1,60 @@
-# 0\. Metadata
+# 0. Metadata
 
  - Title: Cross-conjugation and quantum interference: a general correlation?
  - DOI: 10.1039/c3cp53866d
 
-# 1\. Literature Summary
+# 1. Literature Summary
 
 This is an experiment + computation study. The authors examine, from both experimental and theoretical perspectives, how π-conjugation motifs govern charge transport in molecular wires, with a particular focus on destructive quantum interference (DQI) in cross-conjugated systems. They compare conductance across three length-matched OPE trimers—AC (linear conjugation), AQ (cross-conjugation), and AH (broken conjugation)—measured on multiple platforms (CP-AFM, STM-BJ, MCBJ, EGaIn). On the theory side they compute the zero-bias transmission T(E) using NEGF-DFT(+Σ) to assess the contribution of quantum interference. The key result is that AQ exhibits a clear DQI feature in T(E) near the Fermi level (absent for AC/AH), which is consistent with the experimental conductance ordering where AQ is the least conductive, establishing the causal chain cross-conjugation → DQI → low conductance.
 
-# 2\. Computational Objectives
+# 2. Computational Objectives
 
 The computation targets a theoretical demonstration of destructive quantum interference (DQI) in AQ near Fermi level and uses it to rationalize why the conductance of AQ is lower than AC and AH. To that end, one needs to compute and compare the zero-bias transmission spectra T(E) for AC/AQ/AH, resolve the AQ antiresonance near Fermi level, and reproduce the qualitative conductance ordering. This minimal reproduction does not require finite-bias I–V modeling and does not rely on strict level-alignment corrections; the paper’s DFT+Σ step improves quantitative agreement with experiment but is not necessary to establish the mechanism “cross-conjugation induces DQI, which suppresses conductance.”
 
-# 3\. Involved Systems
+# 3. Involved Systems
 
 ## System 1: AQ
 
  - Core Molecule:
     - abbreviation: AQ
-	- full\_chemical\_name: 2,6-Bis[(4-acetylthiophenyl)ethynyl]-9,10-anthraquinone
-    - core\_smiles: O=C1c2ccc(C#Cc3ccc(S)cc3)cc2C(=O)c2ccc(C#Cc3ccc(S)cc3)cc21
+	- full_chemical_name: 2,6-Bis[(4-acetylthiophenyl)ethynyl]-9,10-anthraquinone
+    - core_smiles: O=C1c2ccc(C#Cc3ccc(S)cc3)cc2C(=O)c2ccc(C#Cc3ccc(S)cc3)cc21
  - Anchors:
     - anchor_groups: ['Thiol_SH']
  - Electrodes:
-    - electrode\_material: Au 
-    - electrode\_surface: N/A
+    - electrode_material: Au 
+    - electrode_surface: N/A
  - Interface:
-    - interface\_geometry\_text: The molecules have two thiol terminals to connect to gold electrodes, presumably forming thiolate (S-Au) bonds.
- - Variation\_notes: "Cross-conjugated" core
+    - interface_geometry_text: The molecules have two thiol terminals to connect to gold electrodes, presumably forming thiolate (S-Au) bonds.
+ - Variation_notes: "Cross-conjugated" core
 
 ## System 2: AC
  - Core Molecule:
 	- abbreviation: AC
-    - full\_chemical\_name: Anthracene-based wire with two thiolate termini
-    - core\_smiles: Sc1ccc(C#Cc2ccc3cc4cc(C#Cc5ccc(S)cc5)ccc4cc3c2)cc1
- - Variation\_notes: "Linearly conjugated" core. Has the same length, anchors, and electrodes as System 1.
+    - full_chemical_name: Anthracene-based wire with two thiolate termini
+    - core_smiles: Sc1ccc(C#Cc2ccc3cc4cc(C#Cc5ccc(S)cc5)ccc4cc3c2)cc1
+ - Variation_notes: "Linearly conjugated" core. Has the same length, anchors, and electrodes as System 1.
 
 ## System 3: AH
  - Core Molecule:
 	- abbreviation: AH
-    - full\_chemical\_name: 2,6-Bis[(4-acetylthiophenyl)ethynyl]-9,10-dihydroanthracene
-    - core\_smiles: Sc1ccc(C#Cc2ccc3c(c2)Cc2ccc(C#Cc4ccc(S)cc4)cc2C3)cc1
- - Variation\_notes: "Broken conjugation" core. Has the same length, anchors, and electrodes as System 1.
+    - full_chemical_name: 2,6-Bis[(4-acetylthiophenyl)ethynyl]-9,10-dihydroanthracene
+    - core_smiles: Sc1ccc(C#Cc2ccc3c(c2)Cc2ccc(C#Cc4ccc(S)cc4)cc2C3)cc1
+ - Variation_notes: "Broken conjugation" core. Has the same length, anchors, and electrodes as System 1.
 
-# 4\. Applicability Assessment
+# 4. Applicability Assessment
 
 **Applicable.**
 
 The computational objective is only to compare the transmission spectra of different systems at zero bias; although the original paper employs DFT+Σ for quantitative alignment, the determination of the “trend and mechanism” does not rely on this step, and the problem can be reproduced with MST.
 
-# 5\. Hierarchical Analysis
+# 5. Hierarchical Analysis
 
 **Level: L1**
 
 According to the QDHC hierarchical criteria, the core conclusion of this study is that the zero-bias transmission lineshape differences are determined by quantum interference induced by intramolecular cross-conjugation (i.e., by the molecule itself), without involving interface effects or non-equilibrium influences; therefore it maps to the **L1 level** (molecule-only + WBL constant coupling). Considering that the investigated system (the AQ system containing an anthraquinone unit) is not a simple conjugated system, the electronic-structure calculation should therefore employ the GFN-xTB method, which accounts for more key interactions.
 
-# 6\. Input Preparation
+# 6. Input Preparation
 
 This task will use the `L1_XTB` module, as the GFN-xTB method is more accurate than EHT and better suited for capturing the complex electronic structures and charge distributions (e.g., the push-pull character of AQ) discussed in the paper.
 
@@ -73,7 +73,7 @@ This task will use the `L1_XTB` module, as the GFN-xTB method is more accurate t
  - **Energy Range (`--Erange`)**: `2` (To scan from $E_F - 2$ eV to $E_F + 2$ eV).
  - **Energy Points (`--Enum`)**: `1000` (For a high-resolution spectrum).
 
-# 7\. Computational Workflow
+# 7. Computational Workflow
 
 ## Goal：Compute and compare the zero-bias transmission spectra of AC/AQ/AH
 

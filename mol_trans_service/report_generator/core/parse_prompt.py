@@ -17,7 +17,7 @@ Parse the following request and return JSON with this structure:
   "systems": [
     {{
       "name": "<optional label>" (the abbreviation/label of the system),
-      "core_smiles": "<SMILES or null>",
+      "core_smiles": "<SMILES or null>", (If the user does not provide it, **do not fabricate**)
       "anchor_groups": ["<anchor>", "..."] ((Tags-only, no descriptions. Follow the format: "Name_ChemicalFormula", e.g., ['Thiol_SH', 'Pyridine_N'], ['Amine_NH2'], ['Alkyl_C'], ['Benzene_Pi'])),
       "electrode_material": "<material or null>" (e.g., Au, Ag, Graphene),
       "electrode_surface": "<surface or null>",
@@ -31,6 +31,7 @@ Rules:
 - Keep descriptions concise (<= 5 sentences).
 - Combine multiple related molecules as separate entries in the "systems" array.
 - If the user does not specify a system, return an empty list.
+- If the user does not provide SMILES, **do not fabricate** it. Return null instead.  
 
 User query:
 \"\"\"{query}\"\"\""""
