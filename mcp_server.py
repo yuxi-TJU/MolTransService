@@ -39,15 +39,15 @@ async def tool_initialize_transport_workflow() -> Dict[str, Any]:
 
 
 @app.tool(
-    name="report_generator",
-    description="""Generate a markdown-styled molecular transport calculation report from a natural-language research query.
+    name="protocol_generator",
+    description="""Generate a markdown-styled molecular transport calculation protocol from a natural-language research query.
 
-The tool parses the query using LLM, retrieves relevant reports from a database, and generates a detailed report on molecular transport, including hierarchical analysis and computational workflows.
+The tool parses the query using LLM, retrieves relevant reports from a database, and generates a detailed protocol for molecular transport calculations, including hierarchical analysis and computational workflows.
 
 Args:
 - query (str): The research query in natural language.
 - parse_model (str, optional): Model for parsing the query (e.g., "gpt5", "gemini-2.5-pro"). Defaults to environment setting.
-- gen_model (str, optional): Model for generating the report. Defaults to `parse_model`.
+- gen_model (str, optional): Model for generating the protocol. Defaults to `parse_model`.
 - output_prefix (str, optional): Prefix for output filenames (default: "test_id").
 - output_dir (str, optional): Directory to save the generated files.
 - reports_dir (str, optional): Directory to retrieve similar reports for comparison.
@@ -57,12 +57,12 @@ Returns:
 - parsed: Key concepts and systems extracted from the query.
 - results: Retrieved similar reports.
 - examples: Preview of matching reports used in the generation.
-- generation: Paths to the generated report (markdown and record).
+- generation: Paths to the generated protocol (markdown and record).
 - timestamp: The generation time.
 - metadata: Information about the model and processing details.""",
     structured_output=True,
 )
-async def tool_report_generator(
+async def tool_protocol_generator(
     query: str,
     top_k: int = 3,
     parse_model: Optional[str] = None,

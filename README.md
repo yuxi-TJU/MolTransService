@@ -5,7 +5,7 @@
 - turn a natural-language research question into a structured `MolSimTransport` transport protocol,
 - build extended-molecule (EM) structures,
 - build full-junction structures,
-- and then execute the downstream shell workflow if `MolSimTransport` and the required external binaries are installed.
+- execute the downstream shell workflow if `MolSimTransport` and the required external binaries are installed.
 
 ## Recommended Environment
 
@@ -52,9 +52,9 @@ Other coding agents, such as `Claude Code` or `Gemini-cli`, can play a similar r
 
 For Codex installation and usage, please refer to the official [Codex CLI documentation](https://developers.openai.com/codex/cli).
 
-*Note: To use Codex, you need either a ChatGPT plan that includes Codex access, such as Plus, Pro, or an OpenAI API key.*
+*Note: To use Codex, you need either a ChatGPT plan with Codex access, such as Plus or Pro, or an OpenAI API key.*
 
-## How to use
+## How to Use
 
 ### 1. Install Python Dependencies
 
@@ -62,16 +62,15 @@ First, install the required Python dependencies from `requirements.txt`.
 
 ```bash
 pip install -r requirements.txt
-````
+```
 
 ### 2. Configure Codex to Connect to the MCP Server
 
 Configure Codex by editing its `config.toml` file. This file is usually located in the `.codex` directory under your user home directory, for example:
 
 ```text
-/home/base/.codex/config.toml
+~/.codex/config.toml
 ```
-*Note: `base` is your environment name*
 
 Add the following content to `config.toml`:
 
@@ -109,9 +108,19 @@ PARSE_MODEL=your_model_name_here
 GEN_MODEL=your_model_name_here
 ```
 
-### 4. Start Codex and Check MCP Loading
+### 4. Start the MCP Server and Check MCP Loading
 
-Run Codex in the project workspace:
+First, start the MCP server by running `mcp_server.py`:
+
+```bash
+python mcp_server.py
+```
+
+This will start a local MCP service on port `9000`.
+
+*Note: The port number can be changed if needed, but it must be consistent with the MCP server URL configured in Codex `config.toml`.*
+
+Then, run Codex in your project workspace:
 
 ```bash
 codex --yolo
@@ -155,13 +164,5 @@ Build an L2 structure using the molecule file ... with anchor atoms ...
 ```text
 Follow the generated protocol and execute the molecular transport workflow step by step.
 ```
-
-
-
-
-
-
-
-
 
 

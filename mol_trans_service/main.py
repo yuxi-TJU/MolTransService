@@ -15,20 +15,20 @@ from typing import Any, Dict, List, Mapping, Optional
 
 from dotenv import load_dotenv
 
-from .report_generator.core import (
+from .protocol_generator.core import (
     available_models,
     build_client_from_key,
     load_generation_materials,
     run_full_workflow,
 )
-from .report_generator.retrieval import RetrievalEngine
+from .protocol_generator.retrieval import RetrievalEngine
 from .structure_builder import build_mst_em_functions as em_builder
 from .structure_builder import build_mst_junction_function as junction_builder
 
 # Paths and environment
 PKG_ROOT = Path(__file__).resolve().parent
 PROJECT_ROOT = PKG_ROOT.parent
-REPORT_ROOT = PKG_ROOT / "report_generator"
+REPORT_ROOT = PKG_ROOT / "protocol_generator"
 STRUCTURE_BUILDER_ROOT = PKG_ROOT / "structure_builder"
 PROMPT_PATH = PKG_ROOT / "prompts" / "system_prompt.md"
 SYSTEM_PROMPT = PROMPT_PATH.read_text(encoding="utf-8")

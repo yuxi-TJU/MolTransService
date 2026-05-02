@@ -54,14 +54,14 @@ docs/
 benchmark/
 other/
 PROJECT_SUMMARY.md
-mol_trans_service/report_generator/ablation_study/
-mol_trans_service/report_generator/new_ablation_study_for_tier_assignment/
-mol_trans_service/report_generator/new_ablation_study_for_workflow_assessment/
-mol_trans_service/report_generator/report_database/db_analysis/
+mol_trans_service/protocol_generator/ablation_study/
+mol_trans_service/protocol_generator/new_ablation_study_for_tier_assignment/
+mol_trans_service/protocol_generator/new_ablation_study_for_workflow_assessment/
+mol_trans_service/protocol_generator/report_database/db_analysis/
 
 # Historical manual copies
-mol_trans_service/report_generator/manual/backup/
-mol_trans_service/report_generator/manual/old/
+mol_trans_service/protocol_generator/manual/backup/
+mol_trans_service/protocol_generator/manual/old/
 
 # OS
 .DS_Store
