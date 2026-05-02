@@ -7,6 +7,8 @@
 - build full-junction structures,
 - execute the downstream shell workflow if `MolSimTransport` and the required external binaries are installed.
 
+![MolTransService workflow](figures/workflow.png)
+
 ## Recommended Environment
 
 We recommend using this project in WSL on Windows or on a Linux system, because `MolSimTransport` needs to run in a Linux environment.
@@ -164,5 +166,4 @@ Build an L2 structure using the molecule file ... with anchor atoms ...
 ```text
 Follow the generated protocol and execute the molecular transport workflow step by step.
 ```
-
 
