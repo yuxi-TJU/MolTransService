@@ -55,8 +55,8 @@ benchmark/
 other/
 PROJECT_SUMMARY.md
 mol_trans_service/protocol_generator/ablation_study/
-mol_trans_service/protocol_generator/new_ablation_study_for_tier_assignment/
-mol_trans_service/protocol_generator/new_ablation_study_for_workflow_assessment/
+mol_trans_service/protocol_generator/ablation_study_for_tier_assignment/
+mol_trans_service/protocol_generator/ablation_study_for_workflow_assessment/
 mol_trans_service/protocol_generator/report_database/db_analysis/
 
 # Historical manual copies

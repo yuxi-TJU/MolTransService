@@ -28,7 +28,7 @@ outputs/
 
 ```bash
 # 进入脚本所在目录
-cd new_ablation_study_for_tier_assignment/
+cd ablation_study_for_tier_assignment/
 
 # 方式 1：指定模型目录
 python generate_result_data.py outputs/gemini-2.5-pro
