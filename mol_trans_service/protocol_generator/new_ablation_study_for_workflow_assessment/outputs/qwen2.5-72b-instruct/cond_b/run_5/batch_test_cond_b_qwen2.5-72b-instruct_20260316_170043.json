@@ -1,0 +1,16 @@
+{
+  "test_condition": "cond_b",
+  "model": "Qwen/Qwen2.5-72B-Instruct",
+  "run_id": 5,
+  "top_k": 3,
+  "timestamp": "2026-03-16 17:00:43",
+  "total_queries": 1,
+  "results": [
+    {
+      "name": "test_paper_7",
+      "tier": "L2",
+      "condition": "cond_b",
+      "status": "OK"
+    }
+  ]
+}

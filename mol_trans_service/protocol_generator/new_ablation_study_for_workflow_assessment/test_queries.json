@@ -1,0 +1,104 @@
+{
+  "test_queries": [
+    {
+      "name": "test_paper_1",
+      "label": "L1",
+      "query": "We measured single-molecule conductance of pyridyl-terminated OAE wires 1-10 with dibenzothiophene, carbazole, dibenzofuran, fluorene and biphenyl cores in Au-pyridyl-Au MCBJ junctions. Para-linked wires consistently show higher conductance than their meta isomers, and in the para series G(Op) > G(Np) > G(Sp), whereas in the meta series Nm is most conductive, suggesting that heteroaromaticity and heteroatom pendant orbitals modulate constructive/destructive quantum interference. Could you design a computational workflow to reproduce the trend of conductance change, identify QI features in T(E), and disentangle the roles of aromaticity vs connection configuration (i.e., para/meta) for these Au-pyridyl junctions?"
+    },
+    {
+      "name": "test_paper_2",
+      "label": "L1",
+      "query": "In our measurements on 1,3-dipyridylbenzene (DPB) and 2,5-dipyridylfuran (DPF) ligands and their corresponding Pd_{12}L_{24} cages, we find that the DPF-derived systems are consistently more conductive than the DPB-derived analogues, and experimental analysis suggests destructive quantum interference (DQI) in DPB and constructive quantum interference (CQI) in DPF. Could you propose a computational workflow for Au–pyridyl–Au single-molecule junctions to reproduce the conductance ordering of the DPB/DPF ligands and their corresponding Pd_{12}L_{24} cages, identify the relevant QI features in the transmission spectra, and determine whether the conductance enhancement in the DPF cage can be explained primarily by ligand-encoded quantum interference and through-bond coupling within the cage framework?"
+    },
+    {
+      "name": "test_paper_3",
+      "label": "L1",
+      "query": "In a minimal π-orbital tight-binding model of anthraquinone-based cores with pendant carbonyl groups (idealized Au-pyridyl-Au contacts), we find two pronounced destructive features in the transmission: one dip that remains almost fixed in energy when we change the molecular connectivity from “odd-odd” to “odd-even”, and another that shifts strongly with connectivity.  We tentatively assign the fixed dip to a Fano-type resonance from the pendant carbonyls and the shifting one to a Mach-Zehnder-like multi-path interference effect. Could you propose a practical computational workflow to verify this interpretation and quantify how the positions and depths of these two dips depend on connectivity, pendant-site energy?"
+    },
+    {
+      "name": "test_paper_4",
+      "label": "L1",
+      "query": "In STM-BJ measurements on a homologous series of amine-terminated biphenyl derivatives, where ortho-substituents control the inter-ring torsion, we form Au-amine-biphenyl-amine-Au single-molecule junctions and extract most-probable conductance values from 1D/2D histograms. After correcting for junction-to-junction variability, we find that the conductance of these Au-amine-biphenyl-amine junctions follows an approximate cos²θ dependence on the dihedral angle θ between the two phenyl rings, suggesting π-mediated transport modulated by torsion as the dominant mechanism. Please provide a computational workflow that can verify this angle-conductance dependency."
+    },
+    {
+      "name": "test_paper_5",
+      "label": "L1",
+      "query": "In STM-BJ break-junction experiments on four pyridyl-terminated benzene derivatives (p-DPYB, m-DPYB, p-BPYEB, m-BPYEB) forming Au-pyridyl-Au single-molecule junctions, we find that para-connected molecules are about one order of magnitude more conductive than their meta analogues, and this para/meta conductance ratio increases to >40:1 in the more π-extended BPYEB series. Meta-BPYEB in particular shows strongly suppressed conductance, which we tentatively attribute to enhanced destructive quantum interference as π-electron delocalization increases. Could you propose a computational workflow to confirm that increased π-delocalization in these Au-pyridyl-benzene junctions enhances DQI, and to relate conjugation length and connectivity to the position/depth of transmission anti-resonances and the observed para/meta conductance ratios?"
+    },
+    {
+      "name": "test_paper_6",
+      "label": "L2",
+      "query": "We measured single-molecule junctions of OPE3 derivatives (NH2, Pyr, SMe, SAc) and short alkanes (NH2-terminated C6/C8 and SH-terminated C6/C8) in Au MCBJ junctions. These two molecular families are standard reference wires and do not contain any intrinsic molecular switching unit (no redox center, bistable conformer, etc.), yet I reproducibly observe two kinds of switching: (i) “tunneling” switches where an exponential decay suddenly jumps into a molecular plateau at a well-defined displacement, and (ii) “plateau” switches between two conductance levels, with probabilities that depend on anchoring group and backbone. I suspect contact reconfiguration and junction-formation dynamics rather than intrinsic molecular states. Could you propose a computational workflow to reproduce the observed conductance histograms and to test whether these two mechanisms can quantitatively account for the switching probabilities and plateau lengths we see experimentally?"
+    },
+    {
+      "name": "test_paper_7",
+      "label": "L2",
+      "query": "We measured single-molecule conductance of iodide-terminated oligothiophenes IT-n (n = 1-6) using Au STM break-junctions. The length dependence is clearly non-exponential: G is almost unchanged from IT-1 to IT-3, but then decays exponentially with β ≈ 3.2 nm^{-1} for IT-4 to IT-6. TVS and UV-vis suggest only a modest decrease of the tunneling barrier with length, while XPS and stretching-length data point to a change in binding geometry (short oligomers lying flat with Au-π contacts vs longer ones forming Au-I terminal contacts). Could you propose a workflow to model both binding motifs in Au-IT-n-Au junctions, reproduce G(n), and test whether this geometry transition alone explains the observed conductance and stretching-length trends? "
+    },
+    {
+      "name": "test_paper_8",
+      "label": "L2",
+      "query": "We measured the conductance of an OPE derivative, 4,4′-(1,4-phenylenebis(ethyne-2,1-diyl))bis(pyridin-2-amine) (“compound 1”), using Au-molecule-Au junctions both at the single-molecule level (I(s) STM) and in Au|LB monolayer|Au devices. Thanks to the 2-aminepyridine bidentate anchor, the conductance per molecule is ~1.2×10^{-4}G0 for single-molecule junctions but only ~0.6×10^{-4}G0 in the LB film, and both values are about an order of magnitude higher than monodentate OPE analogues. AFM/XPS and thickness/break-off data suggest different preferred tilt angles (~30° in the LB, ~40° in single-molecule junctions) and chemisorption of both pyridyl-N and amine-N on Au. Could you design a  workflow  to (i) map stable Au-N binding motifs and tilt angles, (ii) compare single vs LB-like environments, and (iii) test whether orientation and double anchoring alone can account for the conductance differences we observe?"
+    },
+    {
+      "name": "test_paper_9",
+      "label": "L2",
+      "query": "We have measured single-molecule conductance of a benzo[1,2-b:4,5-b’]difuran-based cruciform (M1) in an MCBJ setup, where one arm bears pyridyl termini and the orthogonal arm bears TIPS-protected acetylenes; before desilylation we form Au-N junctions (M1-N), after in situ TBAF cleavage we trap the same molecule via in situ generated Au-C σ bonds (M1-C), and as a reference we also measured the linear BDF analogue M2 after desilylation (M2-C, Au-C). Experimentally, we see a clean conversion from M1-N to M1-C with conductance increasing by >1 order of magnitude and plateau lengths consistent with transport along orthogonal molecular axes, and M1-C matches M2-C in conductance. I’d like you to propose a computational workflow for M1-N, M1-C, and M2-C with Au electrodes to verify whether the change in anchoring site and Au-C vs Au-N binding energetics can fully explain the observed conductance switching and selectivity."
+    },
+    {
+      "name": "test_paper_10",
+      "label": "L2",
+      "query": "We have completed MCBJ experiments on amine-terminated single-molecule junctions of 1,4-diaminobenzene, 4,4′-diaminobiphenyl, and 4,4′-diaminotriphenyl between gold electrodes, where we can tune the atomic-scale tip geometry from sharp cone-shaped tips (cone-molecule-cone, CMC) to nearly planar tips (plane-molecule-plane, PMP), with mixed cone-molecule-plane (CMP) junctions in between, all formed via Au-NH2 anchoring in a dry, well-controlled environment. We consistently find that CMC junctions show ~50% higher conductance, longer and more robust plateaus, and characteristic zigzag breaking traces compared to PMP, with CMP giving intermediate behavior, which suggests that local coordination and rehybridization at the Au-amine contacts are crucial for defining the effective coupling and possibly the preferred transport pathway. I’d like you to set up calculations for these three molecules in the CMC, CMP, and PMP Au-NH2 junctions to quantify how contact coupling and the dependence on electrode stretching influence the conductance in each geometry, and to see whether these factors alone can reproduce the experimentally observed conductance hierarchy."
+    },
+    {
+      "name": "test_paper_11",
+      "label": "L3",
+      "query": "I am studying Au-m-OPEn(thiolate)-Au single-molecule diodes using NEGF-DFT with a Au(111) electrode model and PBE. For m-OPE5 and a series of longer, fluorinated and cyclohexane-modified analogues, my calculations give large rectification ratios on the order of 10^{3}-10^{4}. Bias-dependent transmission and MPSH analysis indicate that forward bias is dominated by resonant tunneling through m-OPE π states, while under reverse bias a quantum-interference antiresonance near EF together with reduced σ-channel transmission suppresses the current. Within this same framework , could you propose a step-by-step computational workflow to (i) reproduce the I-V and RR trends across the whole Au-m-OPEn(thiolate)-Au series and (ii) verify that this interference-based mechanism consistently explains the length and substitution dependence?"
+    },
+    {
+      "name": "test_paper_12",
+      "label": "L3",
+      "query": "We have STM-BJ measurements on single-molecule junctions in propylene carbonate with tetrabutylammonium perchlorate, using a Pt wire as an electrolytic gate, for 1,2-bis(4,4-dimethylthiochroman-6-yl)ethylene (1, Au-S anchoring, HOMO-conducting), 1,2-bis(4-pyridyl)ethylene (2, Au-N anchoring, LUMO-conducting), and also 4,4′-bipyridine with Au-N contacts.  We see that for 1, the single conductance peak shifts down by about a factor of two as the gate is swept from negative to positive potentials and junction formation is lost outside roughly -1.1 to +2.5 V, consistent with gate-induced changes in Au-S bonding and level alignment.  For 2 and 4,4′-bipyridine, both the high-conductance tilted and low-conductance upright junctions show conductance peaks that shift up by roughly a factor of three with positive gate, with much smaller changes in plateau statistics, suggesting mainly a rigid shift of LUMO-like resonances and different coupling strengths in the two geometries.  I’d like you to set up transport calculations for these three Au-S and Au-N junctions to quantify orbital alignment, contact coupling, and how a rigid orbital shift with gate can account for the observed conductance-gate trends in each case."
+    },
+    {
+      "name": "test_paper_13",
+      "label": "L3",
+      "query": "We are looking at ferrocenyl-terminated alkanethiolate molecules (SCnFc, in particular SC11Fc) forming asymmetric Au-molecule-Au junctions, where the bottom contact is a chemisorbed thiolate on a flat Au(111) surface (hollow or bridge sites), while the top contact is a weak Fc-Au interaction, with the Cp rings of the ferrocene headgroup facing a Au(111) surface at van der Waals distance. In these diode-like junctions, rectification seems extremely sensitive to the local structure at the Fc side, especially to how much the Fc unit is tilted versus more upright relative to the top Au surface, which should modulate Fc-electrode coupling and level alignment of Fc-centered frontier orbitals. I would like you to set up transport calculations for representative SCnFc junctions, systematically varying the Fc tilt angle (and thus the effective Fc-electrode coupling) to see how level alignment and transmission through Fc-centered orbitals evolve, and to clarify under what conditions changes in tilt alone can account for the observed rectification behavior and its possible collapse."
+    },
+    {
+      "name": "test_paper_14",
+      "label": "L3",
+      "query": "We are examining single-molecule Au-molecule-Au junctions formed by dithiol anchors on Au(111) using two types of backbones: a symmetric tetraphenyl dithiol and an asymmetric 2,2′-bipyrimidinyl-4,4′-biphenyl dithiol, both in low-coverage geometries where the molecular torsion and π-conjugation pattern are preserved. Since the tetraphenyl system shows almost perfectly symmetric current-voltage behavior whereas the bipyrimidinyl-biphenyl diblock exhibits clear rectification even at modest bias, I would like to obtain consistent I-V characteristics for all these junctions using a realistic gold-molecule interface. The aim is to understand whether the intrinsic structural and electronic asymmetry in the diblock is by itself sufficient to generate the observed current asymmetry, and to assess how this behavior depends on factors such as frontier-orbital alignment and how differently each molecular segment interacts with the two electrodes."
+    },
+    {
+      "name": "test_paper_15",
+      "label": "L3",
+      "query": "We are studying a series of cyano-vinyl-aniline donor-π-acceptor molecules (labeled M1-M4) that share the same vinyl-aniline backbone with a terminal cyano acceptor but differ in substituents that tune donor/acceptor strength: M1 is the baseline with an unsubstituted aniline donor and an unsubstituted distal phenyl, M2 carries a para-methoxy on the aniline ring to strengthen the donor, M3 has a para-fluoro on the distal phenyl to weakly increase acceptor character, and M4 bears a para-nitro on the distal phenyl to create a much stronger acceptor. All are to be modeled as thiol-anchored Au-molecule-Au single junctions using the same electrode geometry and contact sites. Please produce consistent calculations that deliver I-V curves and transmission maps for M1-M4, and explicitly report how the LUMO’s energy, spatial localization (donor vs acceptor side), and effective left/right coupling evolve with applied bias, so we can test whether bias-induced LUMO pinning and asymmetric localization alone explain the observed reverse rectification and how sensitive that mechanism is to substituent strength and contact coupling."
+    },
+    {
+      "name": "test_paper_16",
+      "label": "Out",
+      "query": "We are examining several chiral molecules that form thiol-anchored Au-molecule-Au single-junctions, covering distinct structural origins of chirality: (1) axially chiral biaryl systems where restricted rotation creates two enantiomers, (2) point-chiral amino-alcohol derivatives with a stereogenic carbon center incorporated into the backbone. All are measured as isolated single-molecule junctions via thiolate binding to Au electrodes. Experimentally, none of these chiral junctions show measurable differences in conductance or I-V behavior between opposite enantiomers nor between opposite magnetic field orientations. I would like transport calculations for representative molecules from each structural category, using a consistent gold-molecule contact model, to verify whether coherent transport through such single chiral junctions intrinsically produces negligible spin selectivity, and to explore what molecular or interfacial changes would be required for any detectable chiral-induced spin polarization to appear."
+    },
+    {
+      "name": "test_paper_17",
+      "label": "Out",
+      "query": "We are looking at single-molecule Au-molecule-Au junctions built from pyridine-terminated oligoynes, specifically a longer pyridyl-(C≡C)_{8}-pyridyl wire and a shorter pyridyl-(C≡C)_{4}-pyridyl analogue, where the pyridyl groups bind to gold electrodes through N-Au coordination in a relatively weakly coupled geometry. In resonant transport, both systems show clear electronic resonances with well-resolved vibronic side peaks that can be assigned to longitudinal “string-like” stretch modes of the carbon backbone, and for the pyridyl-anchored wires we do not see a strong temperature dependence of the current that would indicate vibrationally assisted decoherence. I would like a set of transport calculations for these junctions, including the dominant backbone vibrational modes, to reproduce and rationalize the spacing and strength of the observed vibronic features and to test why they do not strongly modify the overall conductance."
+    },
+    {
+      "name": "test_paper_18",
+      "label": "Out",
+      "query": "We are studying a single-molecule transistor where a zinc porphyrin bridges a nanogap between two graphene electrodes, using 4-ethynylaniline linkers that form amide bonds to carboxyl-terminated graphene edges, with bulky 3,5-bis(trihexylsilyl)phenyl groups on the porphyrin to control contacts.  In the charge-neutral state we see a very deep conductance minimum between two charge-resonance peaks, consistent with a destructive-interference antiresonance tied to graphene edge states, giving unusually high on/off ratios and sharp gate switching.  I would like junction-level calculations for this graphene-porphyrin-graphene system that yield I-V and transmission as a function of gate, to verify the position and depth of the conductance minimum and to disentangle how much of the switching behavior comes from interference between edge-connected paths versus more conventional level alignment and charging."
+    },
+    {
+      "name": "test_paper_19",
+      "label": "Out",
+      "query": "We are looking at self-assembled monolayer field-effect transistors where p-type BTBT cores are grafted to an AlOx dielectric via phosphonic acid-terminated alkyl chains, comparing BTBT-C11-PA and BTBT-C12-PA, which differ only by one -CH2- in the linker but show clear differences in packing:  X-ray and MD indicate that the C11 SAM forms larger crystalline domains with more upright BTBT units, whereas the C12 SAM is more tilted and disordered, and experimentally the C11-based devices exhibit roughly three-times higher mobility and on-current than the C12 analogues.  I would like you to model charge transport in these monolayers—using representative structural snapshots that capture crystalline and disordered regions—for both BTBT-C11-PA and BTBT-C12-PA, to generate comparative I-V or effective mobility estimates and to see how sensitive the calculated conductance is to BTBT tilt, domain size, and dynamic disorder, so we can better connect the subtle molecular-length change to the observed differences in macroscopic device performance."
+    },
+    {
+      "name": "test_paper_20",
+      "label": "Out",
+      "query": "We are studying single-molecule Au-molecule-Au junctions based on a thiol-anchored Zn porphyrin (ZnTPPdT) in a mechanically controllable break-junction geometry, where changing the electrode separation shifts both occupied- and unoccupied-state transport resonances relative to the Fermi level and effectively compresses or widens the apparent transport gap. In three-terminal devices, sweeping the gate at fixed spacing produces almost rigid shifts of these resonances, whereas varying the electrode spacing at fixed gate clearly changes the gap itself, indicating that the proximity of the metal electrodes strongly influences the addition and removal energies. I would like you to set up transport calculations for this ZnTPPdT-Au junction as a function of electrode separation (and, where feasible, gate potential), using a junction model that can capture how the surrounding metallic environment and its screening modify the frontier level positions, so we can quantitatively compare the “mechanical gating” slopes and understand the origin of the gap renormalization seen in the measurements."
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "test_condition": "cond_a",
+  "model": "gemini-2.5-pro",
+  "run_id": 1,
+  "top_k": null,
+  "timestamp": "2026-03-10 16:26:50",
+  "total_queries": 15,
+  "results": [
+    {
+      "name": "test_paper_1",
+      "tier": "L1",
+      "condition": "cond_a",
+      "status": "OK"
+    },
+    {
+      "name": "test_paper_2",
+      "tier": "L1",
+      "condition": "cond_a",
+      "status": "OK"
+    },
+    {
+      "name": "test_paper_3",
+      "tier": "L1",
+      "condition": "cond_a",
+      "status": "OK"
+    },
+    {
+      "name": "test_paper_4",
+      "tier": "L1",
+      "condition": "cond_a",
+      "status": "OK"
+    },
+    {
+      "name": "test_paper_5",
+      "tier": "L1",
+      "condition": "cond_a",
+      "status": "OK"
+    },
+    {
+      "name": "test_paper_6",
+      "tier": "L2",
+      "condition": "cond_a",
+      "status": "OK"
+    },
+    {
+      "name": "test_paper_7",
+      "tier": "L2",
+      "condition": "cond_a",
+      "status": "OK"
+    },
+    {
+      "name": "test_paper_8",
+      "tier": "L2",
+      "condition": "cond_a",
+      "status": "OK"
+    },
+    {
+      "name": "test_paper_9",
+      "tier": "L2",
+      "condition": "cond_a",
+      "status": "OK"
+    },
+    {
+      "name": "test_paper_10",
+      "tier": "L2",
+      "condition": "cond_a",
+      "status": "OK"
+    },
+    {
+      "name": "test_paper_11",
+      "tier": "L3",
+      "condition": "cond_a",
+      "status": "OK"
+    },
+    {
+      "name": "test_paper_12",
+      "tier": "L3",
+      "condition": "cond_a",
+      "status": "OK"
+    },
+    {
+      "name": "test_paper_13",
+      "tier": "L3",
+      "condition": "cond_a",
+      "status": "OK"
+    },
+    {
+      "name": "test_paper_14",
+      "tier": "L3",
+      "condition": "cond_a",
+      "status": "OK"
+    },
+    {
+      "name": "test_paper_15",
+      "tier": "L3",
+      "condition": "cond_a",
+      "status": "OK"
+    }
+  ]
+}

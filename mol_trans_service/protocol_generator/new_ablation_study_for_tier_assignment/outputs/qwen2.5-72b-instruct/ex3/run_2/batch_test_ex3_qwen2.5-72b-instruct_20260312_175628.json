@@ -1,0 +1,129 @@
+{
+  "test_condition": "ex3",
+  "model": "Qwen/Qwen2.5-72B-Instruct",
+  "run_id": 2,
+  "timestamp": "2026-03-12 17:56:28",
+  "total_queries": 20,
+  "results": [
+    {
+      "name": "test_paper_1",
+      "expert_tier": "L1",
+      "predicted_tier": "L2",
+      "staged_path": null
+    },
+    {
+      "name": "test_paper_2",
+      "expert_tier": "L1",
+      "predicted_tier": "STAGED",
+      "staged_path": "L1 -> L2"
+    },
+    {
+      "name": "test_paper_3",
+      "expert_tier": "L1",
+      "predicted_tier": "STAGED",
+      "staged_path": "L1 -> L2"
+    },
+    {
+      "name": "test_paper_4",
+      "expert_tier": "L1",
+      "predicted_tier": "L1",
+      "staged_path": null
+    },
+    {
+      "name": "test_paper_5",
+      "expert_tier": "L1",
+      "predicted_tier": "STAGED",
+      "staged_path": "L1 -> L2"
+    },
+    {
+      "name": "test_paper_6",
+      "expert_tier": "L2",
+      "predicted_tier": "STAGED",
+      "staged_path": "L2 -> L3"
+    },
+    {
+      "name": "test_paper_7",
+      "expert_tier": "L2",
+      "predicted_tier": "L2",
+      "staged_path": null
+    },
+    {
+      "name": "test_paper_8",
+      "expert_tier": "L2",
+      "predicted_tier": "STAGED",
+      "staged_path": "L2 -> L3"
+    },
+    {
+      "name": "test_paper_9",
+      "expert_tier": "L2",
+      "predicted_tier": "L2",
+      "staged_path": null
+    },
+    {
+      "name": "test_paper_10",
+      "expert_tier": "L2",
+      "predicted_tier": "L2",
+      "staged_path": null
+    },
+    {
+      "name": "test_paper_11",
+      "expert_tier": "L3",
+      "predicted_tier": "STAGED",
+      "staged_path": "L1 -> L2 -> L3"
+    },
+    {
+      "name": "test_paper_12",
+      "expert_tier": "L3",
+      "predicted_tier": "OOS",
+      "staged_path": null
+    },
+    {
+      "name": "test_paper_13",
+      "expert_tier": "L3",
+      "predicted_tier": "STAGED",
+      "staged_path": "L2 -> L3"
+    },
+    {
+      "name": "test_paper_14",
+      "expert_tier": "L3",
+      "predicted_tier": "L3",
+      "staged_path": null
+    },
+    {
+      "name": "test_paper_15",
+      "expert_tier": "L3",
+      "predicted_tier": "L3",
+      "staged_path": null
+    },
+    {
+      "name": "test_paper_16",
+      "expert_tier": "OOS",
+      "predicted_tier": "OOS",
+      "staged_path": null
+    },
+    {
+      "name": "test_paper_17",
+      "expert_tier": "OOS",
+      "predicted_tier": "STAGED",
+      "staged_path": "L1 -> L2 -> L3"
+    },
+    {
+      "name": "test_paper_18",
+      "expert_tier": "OOS",
+      "predicted_tier": "STAGED",
+      "staged_path": "L1 -> L2 -> L3"
+    },
+    {
+      "name": "test_paper_19",
+      "expert_tier": "OOS",
+      "predicted_tier": "OOS",
+      "staged_path": null
+    },
+    {
+      "name": "test_paper_20",
+      "expert_tier": "OOS",
+      "predicted_tier": "L3",
+      "staged_path": null
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+Model,Condition,Module path,Completeness,Analysis design,Hypothesis-testing,Groundedness,Total
+gemini-2.5-pro,MST-only,2.00,1.83,1.17,0.67,1.00,6.67
+gemini-2.5-pro,MST+Examples,2.00,2.00,2.00,1.83,1.67,9.50
+qwen2.5-72b-instruct,MST-only,1.5,1.50,1.00,0.17,0.50,4.67
+qwen2.5-72b-instruct,MST+Examples,1.83,2.00,1.67,1.33,1.00,7.83
