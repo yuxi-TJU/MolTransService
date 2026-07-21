@@ -1,0 +1,56 @@
+KMeans model selection on [A, B, C, log10(RR)]
+
+k=2: silhouette=0.289134, inertia=919.761731
+k=3: silhouette=0.261779, inertia=757.138266
+k=4: silhouette=0.249856, inertia=623.520391
+k=5: silhouette=0.250600, inertia=541.929809
+k=6: silhouette=0.255893, inertia=477.797763
+
+rr_cluster_k2 cluster 0
+  count = 170
+  mean(A,B,C) = (44.38, 34.06, 22.94)
+  median(A,B,C) = (45.00, 30.00, 15.00)
+  mean RR = 4.148924, median RR = 3.925464
+  mean log10(RR) = 0.560658, median log10(RR) = 0.593891
+  ranges: A=[0, 90], B=[0, 90], C=[0, 60]
+
+rr_cluster_k2 cluster 1
+  count = 173
+  mean(A,B,C) = (45.61, 55.75, 66.68)
+  median(A,B,C) = (45.00, 60.00, 75.00)
+  mean RR = 0.587055, median RR = 0.582576
+  mean log10(RR) = -0.382683, median log10(RR) = -0.234648
+  ranges: A=[0, 90], B=[0, 90], C=[0, 90]
+
+rr_cluster_k4 cluster 0
+  count = 84
+  mean(A,B,C) = (73.93, 40.71, 21.96)
+  median(A,B,C) = (75.00, 45.00, 15.00)
+  mean RR = 3.462465, median RR = 3.181108
+  mean log10(RR) = 0.467869, median log10(RR) = 0.502573
+  ranges: A=[45, 90], B=[0, 90], C=[0, 60]
+
+rr_cluster_k4 cluster 1
+  count = 75
+  mean(A,B,C) = (48.20, 23.60, 77.60)
+  median(A,B,C) = (45.00, 30.00, 75.00)
+  mean RR = 0.624727, median RR = 0.710437
+  mean log10(RR) = -0.386257, median log10(RR) = -0.148474
+  ranges: A=[0, 90], B=[0, 60], C=[60, 90]
+
+rr_cluster_k4 cluster 2
+  count = 93
+  mean(A,B,C) = (42.10, 78.55, 59.35)
+  median(A,B,C) = (45.00, 75.00, 60.00)
+  mean RR = 0.538512, median RR = 0.508575
+  mean log10(RR) = -0.399149, median log10(RR) = -0.293645
+  ranges: A=[0, 90], B=[60, 90], C=[0, 90]
+
+rr_cluster_k4 cluster 3
+  count = 91
+  mean(A,B,C) = (18.63, 32.31, 24.73)
+  median(A,B,C) = (15.00, 30.00, 30.00)
+  mean RR = 4.605432, median RR = 4.680486
+  mean log10(RR) = 0.614251, median log10(RR) = 0.670291
+  ranges: A=[0, 45], B=[0, 75], C=[0, 60]
+
