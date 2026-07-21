@@ -13,6 +13,7 @@ TORSION_BONDS = {
     "B": (22, 23),
     "C": (30, 31),
 }
+TERMINAL_HYDROGEN_INDICES = (1, 40)
 EPSILON = 1.0e-8
 
 
@@ -39,6 +40,27 @@ def write_xyz(path: Path, symbols: list[str], coords: list[list[float]], comment
     for symbol, (x, y, z) in zip(symbols, coords):
         lines.append(f"{symbol:<2} {x:16.8f} {y:16.8f} {z:16.8f}")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def remove_terminal_hydrogens(
+    symbols: list[str],
+    coords: list[list[float]],
+) -> tuple[list[str], list[list[float]]]:
+    if len(symbols) != len(coords):
+        raise ValueError("Symbol and coordinate counts do not match.")
+
+    removal_indices = {index - 1 for index in TERMINAL_HYDROGEN_INDICES}
+    for index in removal_indices:
+        if index < 0 or index >= len(symbols):
+            raise ValueError(f"Terminal hydrogen index {index + 1} is out of range.")
+        if symbols[index].upper() != "H":
+            raise ValueError(
+                f"Atom {index + 1} should be a terminal hydrogen, but is {symbols[index]}."
+            )
+
+    output_symbols = [symbol for index, symbol in enumerate(symbols) if index not in removal_indices]
+    output_coords = [coord for index, coord in enumerate(coords) if index not in removal_indices]
+    return output_symbols, output_coords
 
 
 def vec_sub(a: list[float], b: list[float]) -> list[float]:
@@ -191,13 +213,14 @@ def main() -> None:
                 c_dir.mkdir(parents=True, exist_ok=True)
 
                 coords = generate_structure(base_coords, groups, angle_a, angle_b, angle_c)
+                output_symbols, output_coords = remove_terminal_hydrogens(symbols, coords)
                 filename = f"{output_stem}_A{angle_a:03d}_B{angle_b:03d}_C{angle_c:03d}.xyz"
                 comment = (
                     f"{source_comment.strip()} | "
                     f"A={angle_a:03d} B={angle_b:03d} C={angle_c:03d} | "
-                    "symmetric torsion rotation"
+                    "symmetric torsion rotation | terminal thiol hydrogens removed"
                 )
-                write_xyz(c_dir / filename, symbols, coords, comment)
+                write_xyz(c_dir / filename, output_symbols, output_coords, comment)
                 structure_count += 1
 
     print(f"Generated {structure_count} structures under {SOURCE_FILE.parent}")
